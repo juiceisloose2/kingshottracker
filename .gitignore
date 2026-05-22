@@ -11,6 +11,8 @@
 !static/showcase_assets/
 !static/showcase_assets/*.png
 !static/showcase_assets/*.svg
+!static/avatars/
+!static/avatars/*.png
 !public_export/
 !public_export/**
 
@@ -34,6 +36,6 @@ tracker_test_*.db
 backups/
 debug_failures/
 screenshots/
-avatars/
+/avatars/
 tmp*/
 tracker_backup_*/
