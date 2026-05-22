@@ -1,0 +1,33 @@
+# This Git repo is only for the Vercel-safe public dashboard export.
+# Keep the local scanner app, databases, credentials, screenshots, and logs off GitHub.
+*
+
+!.gitignore
+!.vercelignore
+!vercel.json
+!public_export/
+!public_export/**
+
+# Always exclude generated caches and secrets if an ignore exception is added later.
+__pycache__/
+*.py[cod]
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.log
+*.pid
+*.lock
+*.stop
+.vercel/
+token.json
+client_secrets.json
+tracker_local*.db*
+manual_chat_test_*.db
+tracker_test_*.db
+backups/
+debug_failures/
+screenshots/
+avatars/
+tmp*/
+tracker_backup_*/

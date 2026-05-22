@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1152" role="img" aria-label="KOR alliance shield">
+  <defs>
+    <linearGradient id="shieldBlue" x1="18%" y1="5%" x2="82%" y2="94%">
+      <stop offset="0" stop-color="#0b518a"/>
+      <stop offset="0.48" stop-color="#0e7fbd"/>
+      <stop offset="1" stop-color="#052946"/>
+    </linearGradient>
+    <linearGradient id="goldEdge" x1="12%" y1="0" x2="88%" y2="100%">
+      <stop offset="0" stop-color="#ffe18a"/>
+      <stop offset="0.45" stop-color="#c88c22"/>
+      <stop offset="1" stop-color="#8c5f12"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.48" stop-color="#d7e3eb"/>
+      <stop offset="1" stop-color="#7d8d9c"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="26" stdDeviation="28" flood-color="#0b2a4b" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <g filter="url(#softShadow)">
+    <path d="M512 46 875 164 822 788 512 1096 202 788 149 164Z" fill="url(#goldEdge)"/>
+    <path d="M512 112 808 208 762 748 512 998 262 748 216 208Z" fill="url(#shieldBlue)" stroke="#fff3bc" stroke-width="16"/>
+    <path d="M512 166 741 240 704 711 512 903 320 711 283 240Z" fill="none" stroke="rgba(255,255,255,0.34)" stroke-width="12"/>
+    <path d="M512 134 554 226 654 238 581 305 600 404 512 354 424 404 443 305 370 238 470 226Z" fill="#f6cf58" stroke="#8b5f12" stroke-width="10"/>
+    <g transform="translate(512 595)">
+      <path d="M-224-188-164-248 256 172 196 232Z" fill="#8f6424"/>
+      <path d="M-190-214-156-248 264 172 230 206Z" fill="url(#steel)" stroke="#31465a" stroke-width="8"/>
+      <path d="M-256 172 164-248 224-188-196 232Z" fill="#8f6424"/>
+      <path d="M-264 172 156-248 190-214-230 206Z" fill="url(#steel)" stroke="#31465a" stroke-width="8"/>
+      <circle cx="0" cy="0" r="38" fill="url(#goldEdge)" stroke="#fff2b4" stroke-width="8"/>
+    </g>
+    <text x="512" y="846" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="126" font-weight="900" letter-spacing="-6" fill="#fff9d6" stroke="#17324e" stroke-width="10" paint-order="stroke">KOR</text>
+  </g>
+</svg>
