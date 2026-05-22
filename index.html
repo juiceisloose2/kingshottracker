@@ -3222,7 +3222,7 @@ function renderShowcaseLegacy(d, derived) {
   const topMembers = document.getElementById("showcase-top-members");
   topMembers.innerHTML = (d.members || []).slice(0, 4).map(m => `
     <div class="topline-item">
-      <img class="topline-avatar" src="/static/avatars/${m.player_id}" alt="${safe(m.name)}" onerror="this.style.visibility='hidden'" />
+      <img class="topline-avatar" src="/static/avatars/${m.player_id}.png" alt="${safe(m.name)}" onerror="this.style.visibility='hidden'" />
       <div>
         <div class="topline-name">${safe(m.name)}</div>
         <div class="topline-meta">${fmtDeltaHTML(m.delta, m.pct)} • Rank #${m.rank ?? "-"}</div>
@@ -3562,7 +3562,7 @@ function renderShowcase(d, derived) {
   const gvAvatar = document.getElementById("mockup-growth-velocity-avatar");
   if (gvAvatar) {
     if (velocityLead?.player_id) {
-      gvAvatar.src = `/static/avatars/${encodeURIComponent(velocityLead.player_id)}`;
+      gvAvatar.src = `/static/avatars/${encodeURIComponent(velocityLead.player_id)}.png`;
       gvAvatar.alt = velocityLead.name || "";
       gvAvatar.style.visibility = "";
     } else {
@@ -3597,7 +3597,7 @@ function renderShowcase(d, derived) {
         <div class="mockup-governor-row">
           <span class="mockup-medal rank-${idx + 1}">${idx + 1}</span>
           <div class="mockup-governor-person">
-            <img src="/static/avatars/${m.player_id}" alt="${safe(m.name)}" onerror="this.style.visibility='hidden'" />
+            <img src="/static/avatars/${m.player_id}.png" alt="${safe(m.name)}" onerror="this.style.visibility='hidden'" />
             <span class="mockup-name">${safe(m.name)}</span>
           </div>
           <span class="mockup-power-cell">${fmtB(m.power)}</span>
@@ -4501,7 +4501,7 @@ function memberRow(m, totalPower, showBar = true) {
   const barHtml = showBar
     ? `<div class="power-bar"><div class="power-bar-fill" style="width:${sharePct}%"></div></div>`
     : "";
-  const avatarHtml = `<img src="/static/avatars/${m.player_id}" width="38" height="38" style="border-radius:10px;object-fit:cover;background:rgba(255,255,255,0.05)" onerror="this.style.visibility='hidden'" loading="lazy">`;
+  const avatarHtml = `<img src="/static/avatars/${m.player_id}.png" width="38" height="38" style="border-radius:10px;object-fit:cover;background:rgba(255,255,255,0.05)" onerror="this.style.visibility='hidden'" loading="lazy">`;
   const newTag = m.is_new ? '<span class="new-badge">NEW</span>' : "";
   const aliasHtml = m.alias ? `<div style="font-size:11px;color:var(--ice);margin-top:4px">AKA ${safe(m.alias)}</div>` : "";
   const rosterHtml = rosterStatusHtml(m);
@@ -5537,7 +5537,7 @@ function memberStatsExportHtml(member, avatarItems = []) {
   const velocity = getMemberVelocitySnapshot(member);
   const velocityLabel = getWindowLabel(getCompareWindow());
   const activity = member.activity || member.activity_score;
-  const avatarSrc = `/static/avatars/${encodeURIComponent(member.player_id)}`;
+  const avatarSrc = `/static/avatars/${encodeURIComponent(member.player_id)}.png`;
   return `
     <div class="member-stats-export-card">
       <div class="member-stats-export-head">
