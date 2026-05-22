@@ -1,17 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/data.json",
-      "destination": "/public_export/data.json"
-    },
-    {
-      "source": "/static/(.*)",
-      "destination": "/public_export/static/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/public_export/index.html"
+      "source": "/((?!data\\.json|static/.*).*)",
+      "destination": "/index.html"
     }
   ]
 }

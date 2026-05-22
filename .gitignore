@@ -5,6 +5,12 @@
 !.gitignore
 !.vercelignore
 !vercel.json
+!index.html
+!data.json
+!static/
+!static/showcase_assets/
+!static/showcase_assets/*.png
+!static/showcase_assets/*.svg
 !public_export/
 !public_export/**
 
