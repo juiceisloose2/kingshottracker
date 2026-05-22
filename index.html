@@ -2701,6 +2701,7 @@ let _pollTimer = null;
 let _allMembers = [];
 let _totalPower = 0;
 let _selectedMemberId = "";
+let _avatarDataById = {};
 let _scanFlagsOnly = false;
 let _memberCompareWindow = 1;
 let _memberSortField = "power";
@@ -2739,6 +2740,13 @@ function escapeHtml(text) {
 }
 window.safe = safe;
 window.escapeHtml = escapeHtml;
+function avatarSrcForMember(memberOrId) {
+  const member = typeof memberOrId === "object" && memberOrId !== null ? memberOrId : null;
+  const playerId = String(member ? member.player_id : memberOrId || "").trim();
+  if (member?.avatar_data_url) return member.avatar_data_url;
+  if (_avatarDataById[playerId]) return _avatarDataById[playerId];
+  return `/static/avatars/${encodeURIComponent(playerId)}.png`;
+}
 const safeFilePart = text => String(text || "export").trim().replace(/[^\w-]+/g, "_").replace(/^_+|_+$/g, "") || "export";
 const rankBadge = r => {
   const cls = r === 1 ? "rank-1" : r === 2 ? "rank-2" : r === 3 ? "rank-3" : "rank-n";
@@ -3092,6 +3100,12 @@ function renderAll(d) {
   document.getElementById("app").style.display = "flex";
   applyMobileHeaderState();
   updateHeaderOffset();
+  _avatarDataById = {};
+  (d.members || []).forEach(member => {
+    if (member?.player_id && member?.avatar_data_url) {
+      _avatarDataById[String(member.player_id)] = member.avatar_data_url;
+    }
+  });
 
   const publicCfg = d.public_config || d.config || {};
   const allianceNameEl = document.getElementById("h-alliance-name");
@@ -3222,7 +3236,7 @@ function renderShowcaseLegacy(d, derived) {
   const topMembers = document.getElementById("showcase-top-members");
   topMembers.innerHTML = (d.members || []).slice(0, 4).map(m => `
     <div class="topline-item">
-      <img class="topline-avatar" src="/static/avatars/${m.player_id}.png" alt="${safe(m.name)}" onerror="this.style.visibility='hidden'" />
+      <img class="topline-avatar" src="${avatarSrcForMember(m)}" alt="${safe(m.name)}" onerror="this.style.visibility='hidden'" />
       <div>
         <div class="topline-name">${safe(m.name)}</div>
         <div class="topline-meta">${fmtDeltaHTML(m.delta, m.pct)} • Rank #${m.rank ?? "-"}</div>
@@ -3562,7 +3576,7 @@ function renderShowcase(d, derived) {
   const gvAvatar = document.getElementById("mockup-growth-velocity-avatar");
   if (gvAvatar) {
     if (velocityLead?.player_id) {
-      gvAvatar.src = `/static/avatars/${encodeURIComponent(velocityLead.player_id)}.png`;
+      gvAvatar.src = avatarSrcForMember(velocityLead);
       gvAvatar.alt = velocityLead.name || "";
       gvAvatar.style.visibility = "";
     } else {
@@ -3597,7 +3611,7 @@ function renderShowcase(d, derived) {
         <div class="mockup-governor-row">
           <span class="mockup-medal rank-${idx + 1}">${idx + 1}</span>
           <div class="mockup-governor-person">
-            <img src="/static/avatars/${m.player_id}.png" alt="${safe(m.name)}" onerror="this.style.visibility='hidden'" />
+            <img src="${avatarSrcForMember(m)}" alt="${safe(m.name)}" onerror="this.style.visibility='hidden'" />
             <span class="mockup-name">${safe(m.name)}</span>
           </div>
           <span class="mockup-power-cell">${fmtB(m.power)}</span>
@@ -4501,7 +4515,7 @@ function memberRow(m, totalPower, showBar = true) {
   const barHtml = showBar
     ? `<div class="power-bar"><div class="power-bar-fill" style="width:${sharePct}%"></div></div>`
     : "";
-  const avatarHtml = `<img src="/static/avatars/${m.player_id}.png" width="38" height="38" style="border-radius:10px;object-fit:cover;background:rgba(255,255,255,0.05)" onerror="this.style.visibility='hidden'" loading="lazy">`;
+  const avatarHtml = `<img src="${avatarSrcForMember(m)}" width="38" height="38" style="border-radius:10px;object-fit:cover;background:rgba(255,255,255,0.05)" onerror="this.style.visibility='hidden'" loading="lazy">`;
   const newTag = m.is_new ? '<span class="new-badge">NEW</span>' : "";
   const aliasHtml = m.alias ? `<div style="font-size:11px;color:var(--ice);margin-top:4px">AKA ${safe(m.alias)}</div>` : "";
   const rosterHtml = rosterStatusHtml(m);
@@ -5537,7 +5551,7 @@ function memberStatsExportHtml(member, avatarItems = []) {
   const velocity = getMemberVelocitySnapshot(member);
   const velocityLabel = getWindowLabel(getCompareWindow());
   const activity = member.activity || member.activity_score;
-  const avatarSrc = `/static/avatars/${encodeURIComponent(member.player_id)}.png`;
+  const avatarSrc = avatarSrcForMember(member);
   return `
     <div class="member-stats-export-card">
       <div class="member-stats-export-head">
