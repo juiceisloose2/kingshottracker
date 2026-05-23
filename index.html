@@ -3114,7 +3114,9 @@ function renderAll(d) {
   const derived = computeDerived(d);
 
   document.getElementById("h-total-power").textContent = fmtB(d.total_power);
-  document.getElementById("h-members").textContent = `${d.member_count}/100`;
+  const activeScannedMembers = d.active_scanned_member_count ?? d.member_count ?? 0;
+  document.getElementById("h-members").textContent = `${activeScannedMembers || 0}`;
+  updateHeaderScanHistory(d.scan_quality || {}, _latestScanStatus);
 
   renderShowcase(d, derived);
   renderMembers(d.members, d.total_power);
@@ -3157,7 +3159,8 @@ function renderShowcaseLegacy(d, derived) {
 
   document.getElementById("share-title").textContent = `${titleAlliance} doesn't coast.`;
   document.getElementById("share-week-pill").textContent = formatWeekLabel(d.latest_week);
-  document.getElementById("share-member-pill").textContent = `${d.member_count}/100`;
+  const showcaseMemberCount = d.active_scanned_member_count ?? d.member_count ?? members.length;
+  document.getElementById("share-member-pill").textContent = `${showcaseMemberCount}`;
   document.getElementById("share-power-pill").textContent = fmtB(d.total_power);
   document.getElementById("showcase-hero-kicker").textContent = `${titleAlliance} • State 38 • Live Recruiting Snapshot`;
   document.getElementById("legacy-showcase-hero-headline").textContent =
@@ -3551,6 +3554,7 @@ function renderShowcase(d, derived) {
   const velocitySnapshot = buildVelocitySnapshot(d, 1, Math.max(0, weeks.length - 1));
   const velocityLead = velocitySnapshot.rows?.[0] || null;
   const stabilityPct = d.member_count ? (derived.stableMembers / d.member_count) * 100 : 0;
+  const showcaseMemberCount = d.active_scanned_member_count ?? d.member_count ?? members.length;
   const sortedPowers = members.map(m => Number(m.power || 0)).sort((a, b) => a - b);
   const medianPower = sortedPowers.length
     ? sortedPowers[Math.floor((sortedPowers.length - 1) / 2)]
@@ -3560,8 +3564,8 @@ function renderShowcase(d, derived) {
   setShowcaseText("mockup-updated-at", `Updated: ${snapshotTime}`);
   setShowcaseText("mockup-scan-status", _latestScanStatus?.running ? "Scanning" : "Up to date");
   setShowcaseText("mockup-scan-note", d.latest_week ? latestSnapshotLabel : "Latest snapshot");
-  setShowcaseText("mockup-member-count", `${d.member_count || members.length} / 100`);
-  setShowcaseText("mockup-member-note", `${Math.max(0, 100 - (d.member_count || members.length))} spots available`);
+  setShowcaseText("mockup-member-count", `${showcaseMemberCount || 0}`);
+  setShowcaseText("mockup-member-note", "Active scanned roster");
   setShowcaseText("mockup-alliance-rank", _allianceRank);
   setShowcaseText("mockup-server-rank", SHOWCASE_PLACEHOLDER_SERVER_RANK);
   setShowcaseText("mockup-total-power", fmtB(d.total_power));
@@ -6531,6 +6535,7 @@ async function loadScanAlerts() {
     const data = await resp.json();
     if (data.error) { body.innerHTML = `<div class="text-muted" style="font-size:13px">${safe(data.error)}</div>`; return; }
     renderScanAlerts(data.alerts || []);
+    renderRecentScanRuns(_data?.scan_quality?.recent_runs || []);
     renderRejectedScans(null); // will be loaded separately from scan_quality
   } catch(e) {
     body.innerHTML = `<div class="text-muted" style="font-size:13px">Failed to load alerts.</div>`;
@@ -6742,6 +6747,43 @@ function renderRejectedScans(recentRuns) {
   body.innerHTML = rows;
 }
 
+function renderRecentScanRuns(recentRuns) {
+  const body = document.getElementById("recent-scan-runs-body");
+  if (!body) return;
+  const runs = normalizeRecentScanRuns({ recent_runs: Array.isArray(recentRuns) ? recentRuns : [] }, _latestScanStatus || {});
+  if (!runs.length) {
+    body.innerHTML = `<div class="text-muted" style="font-size:13px;padding:12px 0">No recent scan runs recorded yet.</div>`;
+    return;
+  }
+  body.innerHTML = runs.map(function(run) {
+    const started = formatTimestampNoSeconds(run.started_at || "", "-");
+    const ended = formatTimestampNoSeconds(run.ended_at || run.finished_at || "", "-");
+    const status = scanRunDisplayStatus(run);
+    const memberSummary = scanRunMemberSummary(run);
+    const rejected = Array.isArray(run.rejected_scans) ? run.rejected_scans.length : 0;
+    const notes = String(run.notes || "").trim();
+    const statusLower = String(status).toLowerCase();
+    const statusColor = statusLower === "completed"
+      ? "var(--green)"
+      : (statusLower === "failed" ? "var(--red)" : "var(--gold-2)");
+    return `
+      <div style="padding:10px 12px;border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);display:grid;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-size:12px;font-weight:800;color:${statusColor}">${safe(status)}</span>
+          <span style="font-size:12px;color:var(--ice);font-weight:700">${safe(ended)}</span>
+          <span style="font-size:11px;color:var(--muted)">Started ${safe(started)}</span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted)">
+          <span>Scanned <strong style="color:var(--ice)">${safe(memberSummary)}</strong></span>
+          <span>Autosaves <strong style="color:var(--ice)">${safe(run.autosave_count || 0)}</strong></span>
+          <span>Local saves <strong style="color:var(--ice)">${safe(run.local_save_count || 0)}</strong></span>
+          <span>Rejected/flagged <strong style="color:${rejected ? "var(--gold-2)" : "var(--ice)"}">${safe(rejected)}</strong></span>
+        </div>
+        ${notes ? `<div style="font-size:12px;color:var(--muted);line-height:1.45">${safe(notes)}</div>` : ""}
+      </div>`;
+  }).join("");
+}
+
 async function dismissScanAlert(playerId, weekDate, btn) {
   if (btn) { btn.disabled = true; btn.textContent = "…"; }
   try {
@@ -6779,22 +6821,117 @@ async function deleteScanAlert(playerId, snapshotId, weekDate, btn) {
 
 // ── Scan Quality ─────────────────────────────────────────────────────────────
 
+function scanRunTimestamp(run) {
+  return String(run?.ended_at || run?.finished_at || run?.completed_at || run?.saved_at || run?.snapshot_at || run?.started_at || run?.date || "").trim();
+}
+
+function scanRunSourceLabel(run) {
+  const raw = String(run?.source || run?.trigger || run?.mode || run?.run_type || "").toLowerCase();
+  if (run?.manual || raw.includes("manual")) return "Manual";
+  if (run?.automatic || run?.scheduled || raw.includes("auto") || raw.includes("sched")) return "Auto";
+  return "Scan";
+}
+
+function scanRunIdentityTime(value) {
+  const raw = String(value || "").trim();
+  const match = raw.match(/^(\d{4}-\d{2}-\d{2})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?$/i);
+  if (!match) return raw;
+  let hour = Number(match[2]);
+  const minute = match[3];
+  const second = match[4] || "00";
+  const meridian = (match[5] || "").toUpperCase();
+  if (meridian === "PM" && hour < 12) hour += 12;
+  if (meridian === "AM" && hour === 12) hour = 0;
+  return `${match[1]} ${String(hour).padStart(2, "0")}:${minute}:${second}`;
+}
+
+function scanRunKey(run) {
+  return String(run?.session_id || run?.id || `${scanRunTimestamp(run)}|${run?.captured_players ?? run?.players ?? run?.count ?? ""}|${scanRunSourceLabel(run)}`);
+}
+
+function scanRunMemberSummary(run) {
+  const count = run?.captured_players ?? run?.players ?? run?.count ?? "";
+  const expected = run.active_scanned_member_count ?? run.expected_players ?? run.expected ?? "";
+  if (count === "" && expected === "") return "count unavailable";
+  if (count !== "" && expected !== "" && String(count) !== String(expected)) return `${count}/${expected} members`;
+  const scanned = count !== "" ? count : expected;
+  return `${scanned} members`;
+}
+
+function scanRunDisplayStatus(run) {
+  const status = String(run?.status || "Scan").trim() || "Scan";
+  const captured = Number(run?.captured_players ?? run?.players ?? run?.count ?? 0);
+  const activeExpected = Number(run?.active_scanned_member_count ?? 0);
+  const statusLower = status.toLowerCase();
+  if (activeExpected > 0 && captured >= activeExpected && !["failed", "stopped"].includes(statusLower)) {
+    return "Completed";
+  }
+  return status;
+}
+
+function normalizeRecentScanRuns(scanQuality = {}, liveStatus = {}) {
+  const merged = new Map();
+  const mergeRun = function(run, sourceIndex) {
+    if (!run || !scanRunTimestamp(run)) return;
+    const key = String(run.session_id || run.id || `${scanRunIdentityTime(run.started_at)}|${scanRunIdentityTime(run.ended_at || run.finished_at || scanRunTimestamp(run))}`);
+    const enriched = {
+      ...run,
+      _recent_source_index: sourceIndex,
+      _recent_detail_score: [
+        run.captured_players, run.players, run.count, run.expected_players, run.expected,
+        run.autosave_count, run.local_save_count, run.notes, run.rejected_scans
+      ].filter(value => value != null && value !== "" && !(Array.isArray(value) && !value.length)).length,
+    };
+    const existing = merged.get(key);
+    if (
+      !existing ||
+      enriched._recent_detail_score > existing._recent_detail_score ||
+      (enriched._recent_detail_score === existing._recent_detail_score && sourceIndex < existing._recent_source_index)
+    ) {
+      merged.set(key, enriched);
+    }
+  };
+  (Array.isArray(scanQuality?.recent_runs) ? scanQuality.recent_runs : []).forEach(run => mergeRun(run, 0));
+  (Array.isArray(liveStatus?.recent_runs) ? liveStatus.recent_runs : []).forEach(run => mergeRun(run, 1));
+  (Array.isArray(liveStatus?.history) ? liveStatus.history : []).forEach(run => mergeRun(run, 2));
+
+  return Array.from(merged.values())
+    .map(({ _recent_source_index, _recent_detail_score, ...run }) => run)
+    .sort((a, b) => scanRunTimestamp(b).localeCompare(scanRunTimestamp(a)));
+}
+
+function updateHeaderScanHistory(scanQuality = {}, liveStatus = {}) {
+  const runs = normalizeRecentScanRuns(scanQuality, liveStatus);
+  const latestRun = runs[0] || null;
+  const lastScan = document.getElementById("h-last-scan");
+  const history = document.getElementById("scan-history-list");
+
+  if (lastScan) {
+    lastScan.textContent = latestRun ? formatTimestampNoSeconds(scanRunTimestamp(latestRun), "Never") : "Never";
+  }
+  if (!history) return;
+
+  history.innerHTML = runs.length ? runs.slice(0, 4).map(function(run) {
+    const status = `${safe(scanRunDisplayStatus(run))} `;
+    const source = scanRunSourceLabel(run);
+    const meta = [source, `scanned ${scanRunMemberSummary(run)}`].filter(Boolean).join(" - ");
+    return `<div class="scan-history-item"><span class="scan-history-state">${status}${safe(formatTimestampNoSeconds(scanRunTimestamp(run), "Scan"))}</span><span class="scan-history-meta">${safe(meta)}</span></div>`;
+  }).join("") : '<div class="text-muted" style="font-size:11px">No recent scans yet.</div>';
+}
+
 function renderScanQuality(scanQuality, liveStatus = null) {
+  updateHeaderScanHistory(scanQuality, liveStatus);
   const root = document.getElementById("scan-quality-summary");
   if (!root) return;
   const recentRuns = Array.isArray(scanQuality?.recent_runs) ? scanQuality.recent_runs : [];
   const latestRun = recentRuns[0] || null;
   const live = liveStatus || {};
-  const expectedPlayers = Number(live.expected_players || latestRun?.expected_players || 100);
+  const expectedPlayers = Number(live.expected_players || latestRun?.active_scanned_member_count || latestRun?.expected_players || _data?.active_scanned_member_count || 100);
   const liveCaptured = Number(live.current_captured_players || 0);
   const capturedPlayers = live.running ? liveCaptured : Number(latestRun?.captured_players || 0);
   const status = live.running
     ? (live.stopping ? "Stopping" : live.paused ? "Paused" : "Running")
-    : (latestRun?.status || "-");
-
-  if (latestRun?.ended_at) {
-    document.getElementById("h-last-scan").textContent = formatTimestampNoSeconds(latestRun.ended_at, "Never");
-  }
+    : (latestRun ? scanRunDisplayStatus(latestRun) : "-");
 
   const hasScanInfo = Boolean(latestRun || live.running);
   root.innerHTML = `
@@ -6995,13 +7132,7 @@ function renderHeaderScanStatus(d) {
   }
 
   if (history) {
-    const runs = Array.isArray(d.history) ? d.history.slice(0, 3) : [];
-    history.innerHTML = runs.length ? runs.map(function(run) {
-      const count = run.captured_players ?? run.players ?? run.count ?? "";
-      const label = run.finished_at || run.started_at || run.snapshot_at || run.date || "Scan";
-      const suffix = count !== "" ? ` - ${safe(count)} players` : "";
-      return `<div class="scan-history-item"><span>${safe(label)}</span><span>${suffix}</span></div>`;
-    }).join("") : '<div class="text-muted" style="font-size:11px">No recent scans yet.</div>';
+    updateHeaderScanHistory(_data?.scan_quality || {}, d);
   }
 
   if (lastPlayers) {
