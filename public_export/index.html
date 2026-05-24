@@ -1725,6 +1725,12 @@ window.escapeHtml = window.escapeHtml || function(text) {
   .mockup-heat-dot.high { background: #0aa565; }
   .mockup-heat-dot.mid { background: #aad8b1; }
   .mockup-heat-dot.low { background: #fee3b7; }
+  .mockup-heat-count {
+    text-align: center;
+    font-weight: 900;
+    color: #20262f;
+    font-size: 13px;
+  }
   .mockup-export-ready {
     display: grid;
     grid-template-columns: 82px 1fr 172px;
@@ -1937,6 +1943,368 @@ window.escapeHtml = window.escapeHtml || function(text) {
   select:focus,
   input:focus { border-color: rgba(168,219,255,0.6); }
   .member-count-lbl { margin-left: auto; color: var(--muted); font-size: 13px; }
+
+  .members-command-summary {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .members-summary-tile {
+    min-width: 0;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.022)),
+      rgba(8, 17, 29, 0.72);
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .members-summary-label {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .members-summary-value {
+    margin-top: 8px;
+    color: var(--text);
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .members-summary-note {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .members-insight-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 14px;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(3, 9, 16, 0.38);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .member-insight-btn {
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    min-height: 34px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+  .member-insight-btn:hover {
+    color: var(--text);
+    border-color: rgba(168,219,255,0.3);
+    transform: translateY(-1px);
+  }
+  .member-insight-btn.active {
+    color: #07111c;
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--gold), var(--gold-2));
+    box-shadow: 0 10px 24px rgba(233,201,120,0.16);
+  }
+  .members-command-layout {
+    display: grid;
+    grid-template-columns: minmax(360px, 0.38fr) minmax(0, 0.62fr);
+    gap: 16px;
+    margin-top: 16px;
+    align-items: start;
+  }
+  .members-roster-panel,
+  .member-focus-panel {
+    min-width: 0;
+    border-radius: 8px;
+    background: rgba(6, 14, 24, 0.66);
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .members-roster-panel {
+    overflow: hidden;
+  }
+  .members-roster-head {
+    display: grid;
+    grid-template-columns: 54px minmax(120px, 1fr) minmax(86px, auto) minmax(92px, auto);
+    gap: 10px;
+    align-items: center;
+    padding: 10px 12px;
+    color: var(--muted);
+    background: rgba(3, 9, 16, 0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .members-roster-body {
+    display: grid;
+  }
+  .member-command-row {
+    display: grid;
+    grid-template-columns: 54px minmax(120px, 1fr) minmax(86px, auto) minmax(92px, auto);
+    gap: 10px;
+    align-items: center;
+    min-width: 0;
+    padding: 11px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.065);
+    cursor: pointer;
+    transition: background 0.18s ease, box-shadow 0.18s ease;
+  }
+  .member-command-row:last-child { border-bottom: none; }
+  .member-command-row:hover {
+    background: rgba(255,255,255,0.035);
+  }
+  .member-command-row.selected {
+    background: rgba(233,201,120,0.08);
+    box-shadow: inset 3px 0 0 var(--gold), inset 0 0 0 1px rgba(233,201,120,0.18);
+  }
+  .member-command-rank {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+  }
+  .member-command-governor {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 9px;
+    align-items: center;
+    min-width: 0;
+  }
+  .member-command-avatar,
+  .member-focus-avatar {
+    object-fit: cover;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .member-command-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+  }
+  .member-command-name {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+  .member-command-meta {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .member-command-power {
+    min-width: 0;
+  }
+  .member-command-power-value {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  .member-command-status {
+    display: inline-grid;
+    justify-items: start;
+    min-width: 84px;
+    max-width: 100%;
+    padding: 7px 8px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .member-command-status.up {
+    background: rgba(94,215,146,0.08);
+    border-color: rgba(94,215,146,0.18);
+  }
+  .member-command-status.down {
+    background: rgba(255,121,121,0.08);
+    border-color: rgba(255,121,121,0.18);
+  }
+  .member-command-status-value {
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .member-command-status-label {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .member-history-compact-head,
+  .member-history-compact-row {
+    display: grid;
+    grid-template-columns: minmax(118px,1fr) 74px 54px minmax(104px,0.95fr) minmax(96px,0.82fr) minmax(76px,0.64fr) auto;
+    gap: 8px;
+    align-items: center;
+  }
+  .member-history-compact-head {
+    padding: 0 10px 2px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .member-history-compact-row {
+    min-height: 34px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    font-size: 12px;
+    line-height: 1.2;
+  }
+  .member-history-compact-list {
+    display: grid;
+    gap: 4px;
+  }
+  .member-history-compact-row .btn {
+    padding: 4px 8px !important;
+    font-size: 10px !important;
+  }
+  .member-velocity-compact-table table {
+    font-size: 12px;
+  }
+  .member-velocity-compact-table th,
+  .member-velocity-compact-table td {
+    padding: 6px 8px;
+    line-height: 1.2;
+  }
+  .member-growth-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+  .member-growth-chip {
+    min-width: 0;
+    padding: 8px 9px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .member-growth-label {
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .member-growth-value {
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .member-growth-pct {
+    margin-top: 3px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .member-focus-panel {
+    position: sticky;
+    top: calc(var(--header-offset, 148px) + 78px);
+    padding: 16px;
+    max-height: calc(100vh - var(--header-offset, 148px) - 104px);
+    overflow: auto;
+  }
+  .member-focus-empty {
+    min-height: 280px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: var(--muted);
+    padding: 24px;
+  }
+  .member-focus-head {
+    display: grid;
+    grid-template-columns: 66px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+  }
+  .member-focus-avatar {
+    width: 66px;
+    height: 66px;
+    border-radius: 8px;
+  }
+  .member-focus-name {
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+  }
+  .member-focus-meta {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .member-focus-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .member-focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .member-focus-stat {
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.075);
+  }
+  .member-focus-label {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+  .member-focus-value {
+    margin-top: 7px;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 900;
+  }
+  .member-focus-section {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .member-focus-section-title {
+    color: var(--ice);
+    font-size: 12px;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+  .member-focus-panel .tbl-wrap {
+    overflow-x: auto;
+  }
 
   .ev-joined,
   .ev-left {
@@ -2167,6 +2535,16 @@ window.escapeHtml = window.escapeHtml || function(text) {
     .mockup-top-governors {
       grid-column: span 3;
     }
+    .members-command-summary {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .members-command-layout {
+      grid-template-columns: 1fr;
+    }
+    .member-focus-panel {
+      position: static;
+      max-height: none;
+    }
   }
 
   @media (max-width: 780px) {
@@ -2224,6 +2602,54 @@ window.escapeHtml = window.escapeHtml || function(text) {
     }
     .search-bar .member-count-lbl {
       margin-left: 0;
+    }
+    .members-command-summary {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .members-command-layout {
+      grid-template-columns: 1fr;
+    }
+    .members-roster-head {
+      display: none;
+    }
+    .member-command-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .member-command-rank,
+    .member-command-power {
+      justify-content: space-between;
+    }
+    .member-command-power {
+      display: grid;
+      gap: 8px;
+    }
+    .member-growth-strip {
+      grid-template-columns: 1fr;
+    }
+    .member-history-compact-head {
+      display: none;
+    }
+    .member-history-compact-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .member-history-compact-row > div:first-child,
+    .member-history-compact-row > div:nth-child(6),
+    .member-history-compact-row > div:nth-child(7) {
+      grid-column: 1 / -1;
+    }
+    .member-velocity-compact-table {
+      overflow-x: auto;
+    }
+    .member-focus-panel {
+      position: static;
+      max-height: none;
+    }
+    .member-focus-grid {
+      grid-template-columns: 1fr;
     }
     .btn-row,
     .export-hide {
@@ -2592,7 +3018,7 @@ window.escapeHtml = window.escapeHtml || function(text) {
               </div>
 
               <div class="mockup-tile mockup-activity-heatmap">
-                <div class="mockup-tile-head">Activity Heatmap <span>(Last 7 Days) <span class="mockup-info" data-tip="Member power change activity over the last 7 days. Each cell represents a member — brighter means stronger recent growth.">i</span></span></div>
+                <div class="mockup-tile-head">Activity Heatmap <span>(Power Patterns) <span class="mockup-info" data-tip="Activity is inferred from recent power movement patterns. Brighter cells mean more members currently match that activity label.">i</span></span></div>
                 <div class="mockup-heatmap" id="mockup-activity-heatmap"></div>
               </div>
 
@@ -2654,24 +3080,26 @@ window.escapeHtml = window.escapeHtml || function(text) {
           <div class="export-board-subtitle" id="members-export-subtitle">
             Current roster view with power, rolling growth windows, and activity consistency.
           </div>
-          <div class="card" style="margin-top:16px">
-            <div class="tbl-wrap members-table-wrap">
-              <table class="members-table">
-                <thead>
-                  <tr>
-                    <th>Avatar</th>
-                    <th>Rank</th>
-                    <th>Governor</th>
-                    <th>Power</th>
-                    <th>3 Day</th>
-                    <th>10 Day</th>
-                    <th>30 Day</th>
-                    <th>Activity</th>
-                  </tr>
-                </thead>
-                <tbody id="members-body"></tbody>
-              </table>
+          <div class="members-command-summary" id="members-command-summary"></div>
+          <div class="members-insight-bar" id="members-insight-filters" role="toolbar" aria-label="Member insight filters">
+            <button type="button" class="member-insight-btn active" data-member-filter="all" onclick="setMemberInsightFilter('all')">All</button>
+            <button type="button" class="member-insight-btn" data-member-filter="top_movers" onclick="setMemberInsightFilter('top_movers')">Top Movers</button>
+            <button type="button" class="member-insight-btn" data-member-filter="cooling" onclick="setMemberInsightFilter('cooling')">Cooling</button>
+            <button type="button" class="member-insight-btn" data-member-filter="new" onclick="setMemberInsightFilter('new')">New</button>
+            <button type="button" class="member-insight-btn" data-member-filter="flagged" onclick="setMemberInsightFilter('flagged')">Flagged</button>
+            <button type="button" class="member-insight-btn" data-member-filter="high_activity" onclick="setMemberInsightFilter('high_activity')">High Activity</button>
+          </div>
+          <div class="members-command-layout">
+            <div class="members-roster-panel">
+              <div class="members-roster-head">
+                <span>Rank</span>
+                <span>Governor</span>
+                <span>Power</span>
+                <span>Status</span>
+              </div>
+              <div class="members-roster-body" id="members-body"></div>
             </div>
+            <aside class="member-focus-panel" id="member-focus-panel" aria-live="polite"></aside>
           </div>
         </div>
       </div>
@@ -2706,12 +3134,17 @@ let _scanFlagsOnly = false;
 let _memberCompareWindow = 1;
 let _memberSortField = "power";
 let _memberSortDir = "desc";
+let _memberInsightFilter = "all";
 let _analyticsShowPlayers = true;
 let _analyticsShowTimeline = true;
 let _mobileHeaderExpanded = false;
 let _historyEditId = null;
 let _memberHistoryPages = {};
-const MEMBER_HISTORY_PAGE_SIZE = 25;
+let _memberVelocityPages = {};
+const MEMBER_HISTORY_INITIAL_LIMIT = 10;
+const MEMBER_HISTORY_LOAD_MORE_LIMIT = 5;
+const MEMBER_VELOCITY_INITIAL_LIMIT = 10;
+const MEMBER_VELOCITY_LOAD_MORE_LIMIT = 5;
 
 const fmt = n => n == null ? "-" : Number(n).toLocaleString();
 const fmtB = n => {
@@ -3255,15 +3688,10 @@ function renderShowcaseLegacy(d, derived) {
 }
 
 // Placeholder-only mockup fidelity fields: the tracker does not currently store
-// server/alliance leaderboard rank or daily activity heatmap buckets.
+// server/alliance leaderboard rank.
 const SHOWCASE_PLACEHOLDER_ALLIANCE_RANK = "#7";
 const SHOWCASE_PLACEHOLDER_SERVER_RANK = "Server Rank";
 const SHOWCASE_PLACEHOLDER_RANK_SERIES = [18, 17, 19, 14, 16, 11, 13, 7];
-const SHOWCASE_PLACEHOLDER_ACTIVITY_HEATMAP = [
-  ["High Activity", "high", "high", "high", "high", "high", "high", "high"],
-  ["Mid Activity", "mid", "low", "low", "mid", "mid", "low", "low"],
-  ["Low Activity", "low", "low", "low", "low", "low", "low", "low"]
-];
 
 function setShowcaseText(id, value) {
   const el = document.getElementById(id);
@@ -3695,53 +4123,24 @@ function renderShowcase(d, derived) {
 
   const heatRoot = document.getElementById("mockup-activity-heatmap");
   if (heatRoot) {
-    const allWeeks = d.weeks || [];
-    const history  = d.player_history || [];
-    const displayWeeks = allWeeks.slice(-7);
-    const cols = displayWeeks.length;
-
-    if (cols < 2) {
-      heatRoot.innerHTML = `<div class="text-muted fs12" style="grid-column:1/-1">Need at least 2 scan weeks to show activity.</div>`;
+    const members = d.members || [];
+    if (!members.length) {
+      heatRoot.innerHTML = `<div class="text-muted fs12" style="grid-column:1/-1">Need member history to show activity.</div>`;
     } else {
-      // Dynamic grid: label column + one column per week
-      heatRoot.style.gridTemplateColumns = `82px repeat(${cols}, 1fr)`;
-
-      // Count members per growth tier for each week
-      const weekStats = displayWeeks.map(w => {
-        const wIdx = allWeeks.indexOf(w);
-        let high = 0, mid = 0, low = 0;
-        for (const ph of history) {
-          const curr = ph.powers?.[wIdx];
-          if (curr == null) continue;
-          const prev = wIdx > 0 ? ph.powers?.[wIdx - 1] : null;
-          if (prev == null) { mid++; continue; } // first appearance → neutral
-          const pct = prev > 0 ? (curr - prev) / prev * 100 : 0;
-          if (pct > 1)       high++;
-          else if (pct >= 0) mid++;
-          else               low++;
-        }
-        return { high, mid, low };
+      heatRoot.style.gridTemplateColumns = `118px 44px 1fr`;
+      const counts = Object.fromEntries(POWER_ACTIVITY_LABELS.map(label => [label, 0]));
+      members.forEach(member => {
+        const activity = getPowerActivity(member);
+        counts[activity.label] = (counts[activity.label] || 0) + 1;
       });
-
-      // Normalise each row relative to its own peak week
-      const maxHigh = Math.max(...weekStats.map(s => s.high), 1);
-      const maxMid  = Math.max(...weekStats.map(s => s.mid),  1);
-      const maxLow  = Math.max(...weekStats.map(s => s.low),  1);
-      const dot = (count, max) =>
-        count / max >= 0.6 ? "high" : count / max >= 0.25 ? "mid" : "low";
-
-      const heatRows = [
-        ["High Activity", weekStats.map(s => dot(s.high, maxHigh))],
-        ["Mid Activity",  weekStats.map(s => dot(s.mid,  maxMid))],
-        ["Low Activity",  weekStats.map(s => dot(s.low,  maxLow))],
-      ];
-
+      const maxCount = Math.max(...Object.values(counts), 1);
+      const toneForCount = count => count / maxCount >= 0.6 ? "high" : count / maxCount >= 0.25 ? "mid" : "low";
       heatRoot.innerHTML =
-        `<span></span>` +
-        displayWeeks.map(w => `<span class="mockup-heat-day">${shortWeekLabel(w)}</span>`).join("") +
-        heatRows.map(([label, dots]) =>
-          `<span class="mockup-heat-label">${label}</span>` +
-          dots.map(tone => `<span class="mockup-heat-dot ${tone}"></span>`).join("")
+        `<span></span><span class="mockup-heat-day">Now</span><span class="mockup-heat-day">Members</span>` +
+        POWER_ACTIVITY_LABELS.filter(label => label !== "New / Not Enough History").map(label =>
+          `<span class="mockup-heat-label">${safe(label)}</span>` +
+          `<span class="mockup-heat-dot ${toneForCount(counts[label] || 0)}" title="${safe(label)}: ${counts[label] || 0} member${(counts[label] || 0) === 1 ? "" : "s"}"></span>` +
+          `<span class="mockup-heat-count">${counts[label] || 0}</span>`
         ).join("");
     }
   }
@@ -4253,13 +4652,168 @@ function renderDistributionChart(d, derived) {
   });
 }
 
+const POWER_ACTIVITY_LABELS = [
+  "Consistent",
+  "Burst Active",
+  "Slow Active",
+  "Quiet / Saving",
+  "At Risk",
+  "Inactive",
+  "New / Not Enough History"
+];
+
+function parseActivityTime(value) {
+  if (!value) return null;
+  const date = new Date(String(value).replace(" ", "T"));
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function memberRecentHistory(member) {
+  return (Array.isArray(member?.recent_history) ? member.recent_history : [])
+    .filter(item => item && item.power != null)
+    .slice()
+    .sort((a, b) => {
+      const at = parseActivityTime(a.snapshot_at)?.getTime() || 0;
+      const bt = parseActivityTime(b.snapshot_at)?.getTime() || 0;
+      return bt - at;
+    });
+}
+
+function isMeaningfulPositivePowerChange(item) {
+  const delta = Number(item?.delta_from_previous || 0);
+  const pct = Number(item?.pct_from_previous || 0);
+  return delta > 0 && (pct >= 0.01 || delta >= 10000);
+}
+
+function daysBetweenActivityScans(newer, older) {
+  const newerDate = parseActivityTime(newer);
+  const olderDate = parseActivityTime(older);
+  if (!newerDate || !olderDate) return null;
+  return Math.max(0, (newerDate.getTime() - olderDate.getTime()) / 86400000);
+}
+
+function getPowerActivity(member) {
+  const status = String(member?.roster_status || "active").toLowerCase();
+  if (status === "missing") {
+    const days = Number(member?.days_missing || 0);
+    return {
+      score: 5,
+      label: "Inactive",
+      tone: "inactive",
+      detail: `Missing from roster${days ? ` for ${days} day${days === 1 ? "" : "s"}` : ""}.`,
+      positiveScans: 0,
+      flatlineScans: 0,
+      daysSincePositive: days || null,
+      growth3dPct: null,
+      growth10dPct: null
+    };
+  }
+
+  const history = memberRecentHistory(member);
+  if (history.length < 2) {
+    return {
+      score: 20,
+      label: "New / Not Enough History",
+      tone: "new",
+      detail: "Need at least two usable power snapshots to infer activity.",
+      positiveScans: 0,
+      flatlineScans: 0,
+      daysSincePositive: null,
+      growth3dPct: null,
+      growth10dPct: null
+    };
+  }
+
+  const recent = history.slice(0, 12);
+  const positiveItems = recent.filter(isMeaningfulPositivePowerChange);
+  const positiveScans = positiveItems.length;
+  let flatlineScans = 0;
+  for (const item of recent) {
+    if (isMeaningfulPositivePowerChange(item)) break;
+    flatlineScans += 1;
+  }
+
+  const latest = recent[0];
+  const lastPositive = recent.find(isMeaningfulPositivePowerChange);
+  const oldest = recent[recent.length - 1];
+  const daysSincePositive = lastPositive
+    ? daysBetweenActivityScans(latest?.snapshot_at, lastPositive.snapshot_at)
+    : daysBetweenActivityScans(latest?.snapshot_at, oldest?.snapshot_at);
+
+  const growth3d = memberGrowthWindow(member, "3d");
+  const growth10d = memberGrowthWindow(member, "10d");
+  const growth3dPct = growth3d?.pct == null ? null : Number(growth3d.pct);
+  const growth10dPct = growth10d?.pct == null ? null : Number(growth10d.pct);
+  const hasShortGrowth = growth3dPct != null && growth3dPct > 0;
+  const hasLongGrowth = growth10dPct != null && growth10dPct > 0;
+  const bigRecentGrowth = growth3dPct != null && growth3dPct >= 1;
+  const burstRatio = growth3dPct != null && growth10dPct != null
+    ? growth3dPct / Math.max(growth10dPct, 0.01)
+    : 0;
+
+  let score = 35;
+  score += Math.min(positiveScans, 4) * 8;
+  if (hasShortGrowth) score += Math.min(Math.max(growth3dPct, 0), 2) * 6;
+  if (hasLongGrowth) score += 10;
+  if (hasShortGrowth && hasLongGrowth) score += 8;
+  score -= Math.min(flatlineScans, 6) * 5;
+
+  let label = "Quiet / Saving";
+  let tone = "quiet";
+  let detail = "Present on the roster, but recent power movement is limited.";
+
+  if (daysSincePositive != null && daysSincePositive >= 14) {
+    label = "Inactive";
+    tone = "inactive";
+    score = Math.min(score, 15);
+    detail = `No meaningful power increase for about ${Math.floor(daysSincePositive)} days.`;
+  } else if (daysSincePositive != null && daysSincePositive >= 7) {
+    label = "At Risk";
+    tone = "risk";
+    score = Math.min(score, 35);
+    detail = `No meaningful power increase for about ${Math.floor(daysSincePositive)} days.`;
+  } else if (positiveScans >= 3 && hasShortGrowth && hasLongGrowth) {
+    label = "Consistent";
+    tone = "consistent";
+    score = Math.max(score, 85);
+    detail = `${positiveScans} recent positive power movements, with growth in both 3d and 10d windows.`;
+  } else if (bigRecentGrowth && (positiveScans <= 2 || burstRatio >= 0.55)) {
+    label = "Burst Active";
+    tone = "burst";
+    score = Math.max(score, 75);
+    detail = `Recent 3d growth is ${fmtPct(growth3dPct)}, suggesting an event or resource-spend spike.`;
+  } else if (positiveScans >= 2) {
+    label = "Slow Active";
+    tone = "slow";
+    score = Math.max(score, 65);
+    detail = `${positiveScans} recent positive power movements, but growth is modest.`;
+  } else if (positiveScans === 1) {
+    label = "Quiet / Saving";
+    tone = "quiet";
+    score = Math.max(score, 45);
+    detail = "One recent meaningful power increase; likely quiet, saving, or lightly active.";
+  }
+
+  return {
+    score: Math.max(0, Math.min(100, Math.round(score))),
+    label,
+    tone,
+    detail,
+    positiveScans,
+    flatlineScans,
+    daysSincePositive,
+    growth3dPct,
+    growth10dPct
+  };
+}
+
 function analyticsActivityColor(label) {
   const key = String(label || "").toLowerCase();
   if (key.includes("consistent")) return "#5ed792";
-  if (key.includes("active")) return "#a8dbff";
-  if (key.includes("cooling")) return "#e9c978";
-  if (key.includes("restart")) return "#5da9ff";
-  if (key.includes("warming")) return "#f4b27b";
+  if (key.includes("burst")) return "#5da9ff";
+  if (key.includes("slow")) return "#a8dbff";
+  if (key.includes("risk")) return "#e9c978";
+  if (key.includes("inactive")) return "#ff7979";
   if (key.includes("quiet")) return "#9ba9bb";
   return "#64748b";
 }
@@ -4343,7 +4897,7 @@ function renderMomentumQuadrantChart(d) {
       if (!shortWindow || !longWindow || shortWindow.pct == null || longWindow.pct == null) return null;
       return {
         member,
-        label: member.activity?.label || "Unknown",
+        label: getPowerActivity(member).label,
         x: Number(longWindow.pct || 0),
         y: Number(shortWindow.pct || 0),
       };
@@ -4400,7 +4954,7 @@ function renderActivityBreakdownChart(d) {
   destroyChart("activityBreakdown");
   const counts = {};
   (d.members || []).forEach(member => {
-    const label = member.activity?.label || "New / Not Enough History";
+    const label = getPowerActivity(member).label;
     counts[label] = (counts[label] || 0) + 1;
   });
   const labels = Object.keys(counts);
@@ -4515,40 +5069,19 @@ function memberRow(m, totalPower, showBar = true) {
   const selected = String(_selectedMemberId || "") === String(m.player_id);
   const displayRank = Number(m.display_rank || m.rank || 0);
   const rankTrend = rankTrendHtml(m);
-  const activityHtml = activityBadgeHtml(m.activity || m.activity_score);
+  const activity = getPowerActivity(m);
   const barHtml = showBar
     ? `<div class="power-bar"><div class="power-bar-fill" style="width:${sharePct}%"></div></div>`
     : "";
-  const avatarHtml = `<img src="${avatarSrcForMember(m)}" width="38" height="38" style="border-radius:10px;object-fit:cover;background:rgba(255,255,255,0.05)" onerror="this.style.visibility='hidden'" loading="lazy">`;
+  const avatarHtml = `<img class="member-command-avatar" src="${avatarSrcForMember(m)}" alt="${safe(m.name || "Governor")}" onerror="this.style.visibility='hidden'" loading="lazy">`;
   const newTag = m.is_new ? '<span class="new-badge">NEW</span>' : "";
-  const aliasHtml = m.alias ? `<div style="font-size:11px;color:var(--ice);margin-top:4px">AKA ${safe(m.alias)}</div>` : "";
   const rosterHtml = rosterStatusHtml(m);
-  const updatedHtml = m.last_updated_label
-    ? `<div style="font-size:11px;color:var(--muted);margin-top:4px">Updated: ${safe(m.last_updated_label)}${m.updated_via ? ` (${safe(m.updated_via)})` : ""}</div>`
-    : `<div style="font-size:11px;color:var(--muted);margin-top:4px">Updated: not tracked yet</div>`;
-  const selectedHtml = selected
-    ? `<div style="font-size:11px;color:var(--gold);margin-top:4px">${PUBLIC_SHARE ? "Expanded details" : "Selected for manual edit"}</div>`
-    : "";
-  const rowStyle = selected
-    ? "cursor:pointer;background:rgba(233,201,120,0.08);box-shadow:inset 0 0 0 1px rgba(233,201,120,0.24);"
-    : "cursor:pointer;";
+  const playerMeta = m.player_id ? `ID ${safe(m.player_id)}` : "No player ID";
+  const aliasMeta = m.alias ? ` &bull; AKA ${safe(m.alias)}` : "";
   const powerCellHtml = PUBLIC_SHARE
     ? `<div>
-        <span class="fw700">${fmtB(m.power)}</span>
+        <div class="member-command-power-value">${fmtB(m.power)}</div>
         ${barHtml}
-      </div>`
-    : selected
-    ? `<div>
-        <input
-          type="text"
-          id="member-inline-power-${safe(m.player_id)}"
-          value="${safe(fmt(m.power))}"
-          onclick="event.stopPropagation()"
-          oninput="syncInlineMemberPower('${safe(m.player_id)}', this.value)"
-          style="width:100%;min-width:120px;font-weight:800"
-        />
-        ${barHtml}
-        <div style="font-size:10px;color:var(--muted);margin-top:4px">Editable scanned power</div>
       </div>`
     : `<button
         type="button"
@@ -4556,19 +5089,38 @@ function memberRow(m, totalPower, showBar = true) {
         style="all:unset;display:block;width:100%;cursor:pointer"
         title="Edit scanned power"
       >
-        <span class="fw700">${fmtB(m.power)}</span>
+        <span class="member-command-power-value">${fmtB(m.power)}</span>
         ${barHtml}
       </button>`;
-  return `<tr class="member-data-row" onclick="selectMemberForEdit('${m.player_id}')" title="${PUBLIC_SHARE ? "View member details" : "Select member for manual edit"}" style="${rowStyle}">
-    <td class="member-avatar-cell" data-label="" style="width:48px;text-align:center">${avatarHtml}</td>
-    <td data-label="Rank">${rankBadge(displayRank)}${rankTrend}</td>
-    <td class="member-governor-cell" data-label="Governor"><span class="fw700">${safe(m.name)}</span>${newTag}${rosterHtml}${aliasHtml}${updatedHtml}${selectedHtml}</td>
-    <td class="fw700 member-power-cell" data-label="Power">${powerCellHtml}</td>
-    <td data-label="3 Day">${growthCellHtml(m, "3d")}</td>
-    <td data-label="10 Day">${growthCellHtml(m, "10d")}</td>
-    <td data-label="30 Day">${growthCellHtml(m, "30d")}</td>
-    <td data-label="Activity">${activityHtml}</td>
-  </tr>`;
+  return `<div class="member-command-row member-data-row ${selected ? "selected" : ""}" onclick="selectMemberForEdit('${safe(m.player_id)}')" title="${PUBLIC_SHARE ? "View member details" : "Select member for manual edit"}">
+    <div class="member-command-rank">${rankBadge(displayRank)}${rankTrend}</div>
+    <div class="member-command-governor">
+      ${avatarHtml}
+      <div>
+        <div class="member-command-name">${safe(m.name || "Unknown Governor")}${newTag}</div>
+        <div class="member-command-meta">${playerMeta}${aliasMeta}${rosterHtml ? ` ${rosterHtml}` : ""}</div>
+      </div>
+    </div>
+    <div class="member-command-power member-power-cell">${powerCellHtml}</div>
+    <div>${memberStatusChipHtml(activity, m)}</div>
+  </div>`;
+}
+
+function memberStatusChipHtml(activity, member) {
+  const windows = member?.growth_windows || {};
+  const window = windows["10d"]?.available ? windows["10d"] : (windows["3d"]?.available ? windows["3d"] : null);
+  const score = Number(activity?.score || 0);
+  const delta = window ? Number(window.delta || 0) : score;
+  const cls = delta > 0 ? "up" : (delta < 0 ? "down" : "neutral");
+  const value = window
+    ? `${delta > 0 ? "+" : ""}${fmtB(delta)}`
+    : `${Math.round(score)} score`;
+  const label = activity?.label || (window ? "Momentum" : "Status");
+  const detail = activity?.detail || window?.reason || "Member status";
+  return `<div class="member-command-status ${cls}" title="${safe(detail)}">
+    <div class="member-command-status-value ${cls}">${safe(value)}</div>
+    <div class="member-command-status-label">${safe(label)}</div>
+  </div>`;
 }
 
 function rosterStatusHtml(m) {
@@ -4596,38 +5148,65 @@ function growthCellHtml(member, key) {
   </div>`;
 }
 
-function activityBadgeHtml(activityOrScore) {
-  const activity = typeof activityOrScore === "object" && activityOrScore !== null ? activityOrScore : null;
-  const value = Number(activity?.score ?? activityOrScore ?? 0);
+function memberGrowthChipHtml(member, key) {
+  const window = member?.growth_windows?.[key];
+  if (!window || !window.available) {
+    return `<div class="member-growth-chip" title="${safe(window?.reason || "No baseline snapshot for this window.")}">
+      <div class="member-growth-label">${safe(key)}</div>
+      <div class="member-growth-value neutral">-</div>
+      <div class="member-growth-pct neutral">No baseline</div>
+    </div>`;
+  }
+  const delta = Number(window.delta || 0);
+  const pct = window.pct == null ? null : Number(window.pct);
+  const cls = delta >= 0 ? "up" : "down";
+  const sign = delta >= 0 ? "+" : "";
+  const title = `Compared ${window.latest_at || "latest"} to ${window.baseline_at || "baseline"}`;
+  return `<div class="member-growth-chip" title="${safe(title)}">
+    <div class="member-growth-label">${safe(window.label || key)}</div>
+    <div class="member-growth-value ${cls}">${sign}${fmtB(delta)}</div>
+    <div class="member-growth-pct ${cls}">${pct == null ? "-" : fmtPct(pct)}</div>
+  </div>`;
+}
+
+function memberGrowthStripHtml(member) {
+  return `<div class="member-growth-strip">
+    ${["3d", "10d", "30d"].map(key => memberGrowthChipHtml(member, key)).join("")}
+  </div>`;
+}
+
+function activityBadgeHtml(activity) {
+  const value = Number(activity?.score ?? 0);
   const detail = activity?.detail || "";
   const tone = activity?.tone || "";
   let bg = "rgba(255,255,255,0.06)";
   let border = "rgba(255,255,255,0.08)";
   let color = "var(--muted)";
   let label = activity?.label || "New / Not Enough History";
-  if (tone === "cooling") {
-    bg = "rgba(233,201,120,0.15)";
-    border = "rgba(233,201,120,0.25)";
-    color = "var(--gold-2)";
-  } else if (tone === "restarting") {
-    bg = "rgba(168,219,255,0.14)";
-    border = "rgba(168,219,255,0.24)";
-    color = "var(--ice)";
-  } else if (value >= 85) {
+  if (tone === "consistent") {
     bg = "rgba(94,215,146,0.18)";
     border = "rgba(94,215,146,0.28)";
     color = "var(--green)";
-    label = activity?.label || "Consistent";
-  } else if (value >= 70) {
+  } else if (tone === "burst") {
+    bg = "rgba(93,169,255,0.14)";
+    border = "rgba(93,169,255,0.24)";
+    color = "#8fc7ff";
+  } else if (tone === "slow") {
     bg = "rgba(168,219,255,0.14)";
     border = "rgba(168,219,255,0.24)";
     color = "var(--ice)";
-    label = activity?.label || "Active";
-  } else if (value >= 55) {
+  } else if (tone === "risk") {
     bg = "rgba(233,201,120,0.15)";
     border = "rgba(233,201,120,0.25)";
     color = "var(--gold-2)";
-    label = activity?.label || "Warming Up";
+  } else if (tone === "inactive") {
+    bg = "rgba(255,121,121,0.14)";
+    border = "rgba(255,121,121,0.26)";
+    color = "var(--red)";
+  } else if (tone === "quiet") {
+    bg = "rgba(155,169,187,0.14)";
+    border = "rgba(155,169,187,0.24)";
+    color = "#c8d2df";
   }
   return `<span title="${safe(detail)}" style="display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;background:${bg};border:1px solid ${border};color:${color};font-size:11px;font-weight:800"><span>${safe(label)}</span><span style="opacity:0.82">${value}</span></span>`;
 }
@@ -4801,7 +5380,7 @@ function memberHistoryRowsHtml(m, items) {
     const pctText = item.pct_from_previous == null ? "-" : fmtPct(item.pct_from_previous);
     const itemId = Number(item.id || 0);
     return `
-      <div style="display:grid;grid-template-columns:minmax(132px,1fr) 82px 62px minmax(112px,0.95fr) minmax(108px,0.85fr) minmax(92px,0.7fr) auto;gap:10px;font-size:12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);align-items:center">
+      <div class="member-history-compact-row">
         <div>${memberHistoryTimestampHtml(item)}</div>
         <div style="color:${item.source === "manual" ? "var(--gold)" : "var(--ice)"};font-weight:800">${historySourceLabel(item.source)}</div>
         <div>#${safe(item.rank || "-")}</div>
@@ -4810,7 +5389,7 @@ function memberHistoryRowsHtml(m, items) {
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
           <span class="${cls}" style="font-weight:800">${pctText}</span>${historyFlagPill(item)}
         </div>
-        <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap">
+        <div style="display:flex;gap:4px;justify-content:flex-end;flex-wrap:wrap">
           <button class="btn btn-outline" style="padding:6px 10px;font-size:11px" onclick="event.stopPropagation(); openHistoryEdit('${safe(m.player_id)}', ${itemId})">Edit</button>
           <button class="btn" style="padding:6px 10px;font-size:11px;background:rgba(255,121,121,0.12);color:var(--red);border:1px solid rgba(255,121,121,0.2)" onclick="event.stopPropagation(); deleteHistoryEntry('${safe(m.player_id)}', ${itemId})">Delete</button>
         </div>
@@ -4854,14 +5433,14 @@ function renderMemberHistoryPage(member) {
   }
   const items = state.items || [];
   const controls = items.length ? `
-    <div style="display:grid;grid-template-columns:minmax(132px,1fr) 82px 62px minmax(112px,0.95fr) minmax(108px,0.85fr) minmax(92px,0.7fr) auto;gap:10px;padding:0 12px 2px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:0.08em">
+    <div class="member-history-compact-head">
       <div>Scan Date</div><div>Source</div><div>Rank</div><div>Power</div><div>Change</div><div>%</div><div style="text-align:right">Actions</div>
     </div>
   ` : "";
   const footer = state.loading
     ? `<div style="font-size:12px;color:var(--muted)">Loading more history...</div>`
     : state.hasMore
-      ? `<button class="btn btn-outline" style="justify-self:start;padding:8px 12px" onclick="loadMoreMemberHistory('${safe(playerId)}')">Load More</button>`
+      ? `<button class="btn btn-outline" style="justify-self:start;padding:6px 10px;font-size:11px" onclick="loadMoreMemberHistory('${safe(playerId)}')">Load 5 More</button>`
       : items.length
         ? `<div style="font-size:12px;color:var(--muted)">All history loaded.</div>`
         : "";
@@ -4871,7 +5450,7 @@ function renderMemberHistoryPage(member) {
       <div style="font-size:11px;color:var(--muted)">${items.length} loaded</div>
     </div>
     ${controls}
-    <div style="display:grid;gap:8px">${memberHistoryRowsHtml(member, items)}</div>
+    <div class="member-history-compact-list">${memberHistoryRowsHtml(member, items)}</div>
     ${footer}
   `;
 }
@@ -4882,11 +5461,12 @@ async function loadMemberHistoryPage(playerId, append = false) {
   const current = _memberHistoryPages[key] || { items: [], hasMore: true, loading: false, loaded: false, error: "" };
   if (current.loading) return;
   const offset = append ? (current.items || []).length : 0;
+  const limit = append ? MEMBER_HISTORY_LOAD_MORE_LIMIT : MEMBER_HISTORY_INITIAL_LIMIT;
   _memberHistoryPages[key] = { ...current, loading: true, error: "" };
   const member = findMemberById(key) || { player_id: key };
   renderMemberHistoryPage(member);
   try {
-    const res = await fetch(`/api/member/${encodeURIComponent(key)}/history?limit=${MEMBER_HISTORY_PAGE_SIZE}&offset=${offset}&changes_only=1`);
+    const res = await fetch(`/api/member/${encodeURIComponent(key)}/history?limit=${limit}&offset=${offset}&changes_only=1`);
     const js = await res.json();
     if (!res.ok || js.error) throw new Error(js.error || "Unable to load member history.");
     const existing = append ? (current.items || []) : [];
@@ -5013,14 +5593,20 @@ function memberVelocityChartHtml(m) {
 function memberVelocityTableHtml(m) {
   const series = buildVelocitySeriesForPlayer(_data, m.player_id, getCompareWindow()).slice().reverse();
   if (!series.length) return "";
+  const visibleCount = _memberVelocityPages[String(m.player_id || "")] || MEMBER_VELOCITY_INITIAL_LIMIT;
+  const visibleSeries = series.slice(0, visibleCount);
+  const hasMore = visibleCount < series.length;
   return `
     <div style="margin-top:14px">
-      <div style="font-size:12px;color:var(--ice);font-weight:700;margin-bottom:8px">Growth Velocity History</div>
-      <div class="tbl-wrap">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px">
+        <div style="font-size:12px;color:var(--ice);font-weight:700">Growth Velocity History</div>
+        <div style="font-size:11px;color:var(--muted)">${visibleSeries.length} of ${series.length} shown</div>
+      </div>
+      <div class="tbl-wrap member-velocity-compact-table">
         <table>
           <thead><tr><th>Week</th><th>Delta</th><th>Player %</th><th>Vs Alliance</th><th>Tier</th></tr></thead>
           <tbody>
-            ${series.map(item => `
+            ${visibleSeries.map(item => `
               <tr style="background:${item.bandBg}">
                 <td>${safe(item.endWeek || "-")}</td>
                 <td class="${item.delta >= 0 ? "up" : "down"}">${item.delta >= 0 ? "+" : ""}${fmtB(item.delta)}</td>
@@ -5032,8 +5618,21 @@ function memberVelocityTableHtml(m) {
           </tbody>
         </table>
       </div>
+      ${hasMore ? `<button class="btn btn-outline" style="margin-top:8px;padding:6px 10px;font-size:11px" onclick="loadMoreMemberVelocity('${safe(m.player_id)}')">Load 5 More</button>` : ""}
     </div>
   `;
+}
+
+function loadMoreMemberVelocity(playerId) {
+  const key = String(playerId || "");
+  if (!key) return;
+  const current = _memberVelocityPages[key] || MEMBER_VELOCITY_INITIAL_LIMIT;
+  _memberVelocityPages[key] = current + MEMBER_VELOCITY_LOAD_MORE_LIMIT;
+  const member = findMemberById(key);
+  if (member) {
+    renderSelectedMemberPanel(member);
+    renderSelectedMemberEnhancements();
+  }
 }
 
 function memberChartCanvasHtml(m) {
@@ -5100,7 +5699,7 @@ function memberSnapshotDetailRow(m) {
           </div>
           <div style="padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)">
             <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em">Activity</div>
-            <div style="margin-top:7px">${activityBadgeHtml(m.activity || m.activity_score)}</div>
+            <div style="margin-top:7px">${activityBadgeHtml(getPowerActivity(m))}</div>
           </div>
         </div>
         <div id="member-history-status" style="margin-top:10px;font-size:12px;color:var(--muted)"></div>
@@ -5124,6 +5723,72 @@ function memberAvatarHistoryHtml(m) {
   </div>`;
 }
 
+function memberFocusPanelHtml(m) {
+  const activity = getPowerActivity(m);
+  const avatarSrc = avatarSrcForMember(m);
+  const latestWeek = _data?.latest_week ? formatWeekLabel(_data.latest_week) : "-";
+  return `
+    <div class="member-focus-head">
+      <img class="member-focus-avatar" src="${avatarSrc}" alt="${safe(m.name || "Governor")}" onerror="this.style.visibility='hidden'" loading="lazy">
+      <div>
+        <div class="member-focus-name">${safe(m.name || "Unknown Governor")}</div>
+        <div class="member-focus-meta">Rank #${safe(m.rank || "-")} &bull; ID ${safe(m.player_id || "-")} &bull; ${safe(latestWeek)}</div>
+      </div>
+    </div>
+    <div class="member-focus-actions">
+      ${PUBLIC_SHARE ? "" : `<button class="btn btn-gold" id="btn-export-member-stats-${safe(m.player_id)}" onclick="event.stopPropagation(); exportMemberStatsPng('${safe(m.player_id)}')" style="padding:8px 12px">Export Stats PNG</button>`}
+      ${PUBLIC_SHARE ? "" : `<button class="btn" id="btn-delete-member-${safe(m.player_id)}" onclick="event.stopPropagation(); deleteRosterMember('${safe(String(m.player_id))}', this)" style="padding:8px 12px;background:rgba(255,121,121,0.12);color:var(--red);border:1px solid rgba(255,121,121,0.24)">Delete Player</button>`}
+      <button class="btn btn-outline" onclick="clearMemberEdit()" style="padding:8px 12px">Clear</button>
+    </div>
+    <div class="member-focus-grid">
+      <div class="member-focus-stat">
+        <div class="member-focus-label">Current Power</div>
+        <div class="member-focus-value">${fmtB(m.power || 0)}</div>
+      </div>
+      <div class="member-focus-stat">
+        <div class="member-focus-label">Activity</div>
+        <div style="margin-top:8px">${activityBadgeHtml(activity)}</div>
+      </div>
+      <div class="member-focus-stat">
+        <div class="member-focus-label">Tracked Weeks</div>
+        <div class="member-focus-value">${safe(m.weeks_present || 0)} / ${safe((_data?.weeks || []).length)}</div>
+      </div>
+      <div class="member-focus-stat">
+        <div class="member-focus-label">Stability</div>
+        <div class="member-focus-value">${m.stability_pct == null ? "-" : `${Number(m.stability_pct).toFixed(1)}%`}</div>
+      </div>
+    </div>
+    <div id="member-history-status" class="member-focus-meta" style="margin-top:10px"></div>
+    <div class="member-focus-section">
+      <div class="member-focus-section-title">Rolling Momentum</div>
+      ${memberGrowthStripHtml(m)}
+    </div>
+    <div class="member-focus-section">${memberCombinedHistoryPowerHtml(m)}</div>
+    <div class="member-focus-section">${memberRollingMomentumHtml(m)}</div>
+    <div class="member-focus-section">${memberGrowthVelocitySummaryHtml(m)}</div>
+    <div class="member-focus-section">${memberVelocityChartHtml(m)}</div>
+    <div class="member-focus-section">${memberVelocityTableHtml(m)}</div>
+    <div class="member-focus-section">${memberChartCanvasHtml(m)}</div>
+    <div class="member-focus-section">${memberRankChartHtml(m)}</div>
+    <div class="member-focus-section">${memberAvatarHistoryHtml(m)}</div>
+  `;
+}
+
+function renderSelectedMemberPanel(member) {
+  const panel = document.getElementById("member-focus-panel");
+  if (!panel) return;
+  if (!member) {
+    panel.innerHTML = `<div class="member-focus-empty">
+      <div>
+        <div style="font-size:18px;font-weight:900;color:var(--text)">No governor selected</div>
+        <div style="margin-top:8px;font-size:13px;line-height:1.5">Choose a ranked member to inspect growth, activity, history, and avatar changes.</div>
+      </div>
+    </div>`;
+    return;
+  }
+  panel.innerHTML = memberFocusPanelHtml(member);
+}
+
 function top5Row(m, totalPower) {
   const sharePct = totalPower ? ((m.power / totalPower) * 100) : 0;
   return `<tr>
@@ -5141,7 +5806,7 @@ function renderTop5(members, total) {
 
 function getMemberSortValue(member, field) {
   if (field === "name") return String(member?.name || "").toLowerCase();
-  if (field === "activity") return Number(member?.activity?.score ?? member?.activity_score ?? 0);
+  if (field === "activity") return Number(getPowerActivity(member).score || 0);
   const growthMatch = String(field || "").match(/^growth_(3d|10d|30d)_(delta|pct)$/);
   if (growthMatch) {
     const window = member?.growth_windows?.[growthMatch[1]];
@@ -5157,14 +5822,105 @@ function memberSortTieBreak(a, b) {
   return (Number(b.power || 0) - Number(a.power || 0)) || String(a.name || "").localeCompare(String(b.name || ""));
 }
 
+function memberWatchlistFlagged(member) {
+  const playerId = String(member?.player_id || "");
+  const flags = (_data?.watchlist || []).filter(w => w.type === "power_alert_red" || w.type === "power_alert_yellow");
+  return flags.some(w => String(w.player_id || w.playerId || w.id || "") === playerId || String(w.name || "") === String(member?.name || ""));
+}
+
+function memberInsightValue(member, filter) {
+  if (filter === "top_movers") {
+    const window = member?.growth_windows?.["10d"] || member?.growth_windows?.["3d"];
+    return Number(window?.delta || 0);
+  }
+  if (filter === "cooling") {
+    const activity = getPowerActivity(member);
+    const window = member?.growth_windows?.["10d"] || member?.growth_windows?.["3d"];
+    return Number(window?.delta || 0) || -Number(activity.score || 0);
+  }
+  if (filter === "high_activity") return Number(getPowerActivity(member).score || 0);
+  return Number(member?.power || 0);
+}
+
+function memberMatchesInsightFilter(member, filter) {
+  const key = filter || "all";
+  if (key === "all") return true;
+  if (key === "top_movers") return memberInsightValue(member, "top_movers") > 0;
+  if (key === "cooling") {
+    const activity = getPowerActivity(member);
+    const delta10 = Number(member?.growth_windows?.["10d"]?.delta || 0);
+    const delta3 = Number(member?.growth_windows?.["3d"]?.delta || 0);
+    return ["risk", "inactive", "quiet"].includes(String(activity.tone || "")) || delta10 < 0 || delta3 < 0;
+  }
+  if (key === "new") return !!member?.is_new;
+  if (key === "flagged") return memberWatchlistFlagged(member) || (member?.pct != null && Math.abs(Number(member.pct)) > 50);
+  if (key === "high_activity") {
+    const activity = getPowerActivity(member);
+    return Number(activity.score || 0) >= 75 || ["consistent", "burst"].includes(String(activity.tone || ""));
+  }
+  return true;
+}
+
+function updateMemberInsightButtons() {
+  document.querySelectorAll("[data-member-filter]").forEach(btn => {
+    btn.classList.toggle("active", String(btn.dataset.memberFilter || "all") === _memberInsightFilter);
+  });
+}
+
+function setMemberInsightFilter(filter) {
+  _memberInsightFilter = filter || "all";
+  _scanFlagsOnly = _memberInsightFilter === "flagged";
+  const banner = document.getElementById("scan-flags-banner");
+  if (banner && !_scanFlagsOnly) banner.style.display = "none";
+  updateMemberInsightButtons();
+  renderMembersTable();
+}
+
+function renderMemberCommandSummary(visibleMembers) {
+  const root = document.getElementById("members-command-summary");
+  if (!root) return;
+  const members = visibleMembers || [];
+  const total = members.reduce((sum, member) => sum + Number(member.power || 0), 0);
+  const avg = members.length ? total / members.length : 0;
+  const top10Power = members.slice(0, 10).reduce((sum, member) => sum + Number(member.power || 0), 0);
+  const top10Share = total ? (top10Power / total) * 100 : 0;
+  const growth10 = members.reduce((sum, member) => {
+    const window = member?.growth_windows?.["10d"];
+    return sum + (window && window.available ? Number(window.delta || 0) : 0);
+  }, 0);
+  const activeFilterLabel = {
+    all: "Descending power roster",
+    top_movers: "Positive 10d movers",
+    cooling: "Cooling or risk signals",
+    new: "Recently added governors",
+    flagged: "Scan review flags",
+    high_activity: "Strong activity scores"
+  }[_memberInsightFilter] || "Descending power roster";
+  root.innerHTML = [
+    ["Visible Members", fmt(members.length), activeFilterLabel],
+    ["Visible Power", fmtB(total), "Filtered roster total"],
+    ["Avg Power", fmtB(avg), "Mean visible governor power"],
+    ["Top 10 Share", `${top10Share.toFixed(1)}%`, "Power held by the first ten visible ranks"],
+    ["10d Growth", `${growth10 >= 0 ? "+" : ""}${fmtB(growth10)}`, "Combined visible 10 day change"]
+  ].map(([label, value, note]) => `
+    <div class="members-summary-tile">
+      <div class="members-summary-label">${safe(label)}</div>
+      <div class="members-summary-value">${safe(value)}</div>
+      <div class="members-summary-note">${safe(note)}</div>
+    </div>
+  `).join("");
+}
+
 function getVisibleMembers() {
   const q = document.getElementById("member-search")?.value.trim().toLowerCase() || "";
   let filtered = q ? _allMembers.filter(m => (m.name || "").toLowerCase().includes(q)) : _allMembers.slice();
-  if (_scanFlagsOnly) filtered = filtered.filter(m => m.pct != null && Math.abs(Number(m.pct)) > 50);
+  if (_scanFlagsOnly) _memberInsightFilter = "flagged";
+  filtered = filtered.filter(m => memberMatchesInsightFilter(m, _memberInsightFilter));
   const dir = _memberSortDir === "asc" ? 1 : -1;
   filtered.sort((a, b) => {
-    const av = getMemberSortValue(a, _memberSortField);
-    const bv = getMemberSortValue(b, _memberSortField);
+    const insightRanked = ["top_movers", "cooling", "high_activity"].includes(_memberInsightFilter) && _memberSortField === "power";
+    const av = insightRanked ? memberInsightValue(a, _memberInsightFilter) : getMemberSortValue(a, _memberSortField);
+    const bv = insightRanked ? memberInsightValue(b, _memberInsightFilter) : getMemberSortValue(b, _memberSortField);
     if (typeof av === "string" || typeof bv === "string") {
       const cmp = String(av).localeCompare(String(bv));
       return cmp * dir || memberSortTieBreak(a, b);
@@ -5185,11 +5941,22 @@ function getVisibleMembers() {
 
 function renderMembersTable() {
   const visibleMembers = getVisibleMembers();
-  document.getElementById("member-count-lbl").textContent = `${visibleMembers.length} members`;
-  document.getElementById("members-body").innerHTML = visibleMembers.map(m => {
-    const row = memberRow(m, _totalPower);
-    return String(_selectedMemberId || "") === String(m.player_id) ? row + memberSnapshotDetailRow(m) : row;
-  }).join("");
+  const countLabel = document.getElementById("member-count-lbl");
+  if (countLabel) countLabel.textContent = `${visibleMembers.length} members`;
+  if (visibleMembers.length && !visibleMembers.some(m => String(m.player_id) === String(_selectedMemberId || ""))) {
+    _selectedMemberId = String(visibleMembers[0].player_id || "");
+  }
+  if (!visibleMembers.length) _selectedMemberId = "";
+  const body = document.getElementById("members-body");
+  if (body) {
+    body.innerHTML = visibleMembers.length
+      ? visibleMembers.map(m => memberRow(m, _totalPower)).join("")
+      : `<div class="member-focus-empty" style="min-height:220px">No governors match this view.</div>`;
+  }
+  const selectedMember = _selectedMemberId ? findMemberById(_selectedMemberId) : null;
+  renderMemberCommandSummary(visibleMembers);
+  renderSelectedMemberPanel(selectedMember);
+  updateMemberInsightButtons();
   updateMembersExportSubtitle(visibleMembers.length);
   syncMemberEditFromData();
   renderSelectedMemberEnhancements();
@@ -5273,6 +6040,7 @@ function updateScanFlagBadge(watchlist) {
 
 function goToScanFlags() {
   _scanFlagsOnly = true;
+  _memberInsightFilter = "flagged";
   const banner = document.getElementById("scan-flags-banner");
   const bannerText = document.getElementById("scan-flags-banner-text");
   if (banner) banner.style.display = "flex";
@@ -5284,13 +6052,16 @@ function goToScanFlags() {
   if (yellows) parts.push(`${yellows} review`);
   if (bannerText) bannerText.textContent = `Showing ${flags.length} flagged member${flags.length !== 1 ? "s" : ""} — ${parts.join(", ")}`;
   showPage("members", document.querySelector(".tab[onclick*=\"members\"]"));
+  updateMemberInsightButtons();
   filterMembers();
 }
 
 function clearScanFlagsFilter() {
   _scanFlagsOnly = false;
+  _memberInsightFilter = "all";
   const banner = document.getElementById("scan-flags-banner");
   if (banner) banner.style.display = "none";
+  updateMemberInsightButtons();
   filterMembers();
 }
 
@@ -5554,7 +6325,7 @@ function memberStatsExportHtml(member, avatarItems = []) {
   const latestWeek = _data?.latest_week || "-";
   const velocity = getMemberVelocitySnapshot(member);
   const velocityLabel = getWindowLabel(getCompareWindow());
-  const activity = member.activity || member.activity_score;
+  const activity = getPowerActivity(member);
   const avatarSrc = avatarSrcForMember(member);
   return `
     <div class="member-stats-export-card">
@@ -5876,7 +6647,7 @@ function syncMemberEditFromData() {
 
 function selectMemberForEdit(playerId) {
   const incoming = String(playerId || "");
-  _selectedMemberId = String(_selectedMemberId || "") === incoming ? "" : incoming;
+  _selectedMemberId = incoming;
   if (!_selectedMemberId) {
     _historyEditId = null;
     filterMembers();
@@ -6119,15 +6890,25 @@ function renderWatchlist(items) {
 function renderActivityLeaders(members) {
   const root = document.getElementById("activity-leaders-body");
   if (!root) return;
-  const rows = (members || []).slice().sort((a, b) => Number(b.activity_score || 0) - Number(a.activity_score || 0)).slice(0, 10);
+  const rows = (members || []).slice().sort((a, b) => Number(getPowerActivity(b).score || 0) - Number(getPowerActivity(a).score || 0)).slice(0, 10);
   root.innerHTML = rows.length ? rows.map((member, idx) => `
     <tr>
       <td>${rankBadge(idx + 1)}</td>
       <td><span class="fw700">${safe(member.name)}</span>${member.alias ? `<div class="text-muted" style="font-size:11px">AKA ${safe(member.alias)}</div>` : ""}</td>
-      <td>${activityBadgeHtml(member.activity || member.activity_score)}</td>
+      <td>${activityBadgeHtml(getPowerActivity(member))}</td>
       <td>${growthVelocityPillHtml(member.velocity_weekly || member.velocity_monthly || null)}</td>
     </tr>
   `).join("") : '<tr><td colspan="4" class="text-muted">No activity scores yet.</td></tr>';
+}
+
+function cohortItemMetricHtml(item, def) {
+  if (def?.key === "activity_leaders") {
+    const member = (_data?.members || []).find(m => String(m.player_id || "") === String(item?.player_id || "")) || item;
+    return activityBadgeHtml(getPowerActivity(member));
+  }
+  if (item?.delta != null) return `${item.delta >= 0 ? "+" : ""}${fmtB(item.delta)}`;
+  if (item?.rank) return `#${item.rank}`;
+  return "";
 }
 
 function renderCohorts(cohorts) {
@@ -6155,7 +6936,7 @@ function renderCohorts(cohorts) {
                   <div style="font-size:11px;color:var(--muted)">${item.player_id ? `ID ${safe(item.player_id)}` : safe(item.alias || "")}</div>
                 </div>
                 <div style="text-align:right;font-size:12px;color:var(--muted)">
-                  ${item.activity_score != null ? `${activityBadgeHtml(item.activity || item.activity_score)}` : (item.delta != null ? `${item.delta >= 0 ? "+" : ""}${fmtB(item.delta)}` : (item.rank ? `#${item.rank}` : ""))}
+                  ${cohortItemMetricHtml(item, def)}
                 </div>
               </div>
             `).join("")}
@@ -7026,7 +7807,7 @@ function exportCSV() {
     return [m.rank ?? "", '"' + (m.name||"").replace(/"/g,'""') + '"', m.player_id ?? "",
             m.power ?? "", m.delta ?? "",
             m.pct != null ? Number(m.pct).toFixed(2) : "",
-            (m.activity && m.activity.label) ? m.activity.label : ""];
+            getPowerActivity(m).label];
   });
   const csv = [headers.join(",")].concat(rows.map(function(r){return r.join(",");})).join("\n");
   const blob = new Blob([csv], { type: "text/csv" });
