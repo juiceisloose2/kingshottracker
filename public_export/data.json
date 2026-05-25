@@ -87438,7 +87438,1340 @@
     ]
   },
   "chat_summary": {
-    "day": "2026-05-24",
+    "day": "2026-05-25",
+    "message_count": 0,
+    "speaker_count": 0,
+    "top_speakers": [],
+    "unresolved": []
+  },
+  "public_config": {
+    "alliance_name": "[KOR]대한민국"
+  }
+}
+
+      {
+        "snapshot_at": "2026-05-04 09:24:56",
+        "power": 85950042
+      },
+      {
+        "snapshot_at": "2026-05-04 11:25:34",
+        "power": 85950042
+      },
+      {
+        "snapshot_at": "2026-05-04 17:21:20",
+        "power": 85950042
+      },
+      {
+        "snapshot_at": "2026-05-05 00:06:27",
+        "power": 85950042
+      },
+      {
+        "snapshot_at": "2026-05-05 12:32:26",
+        "power": 85828138
+      },
+      {
+        "snapshot_at": "2026-05-05 21:50:30",
+        "power": 85828138
+      },
+      {
+        "snapshot_at": "2026-05-06 09:21:57",
+        "power": 85828138
+      },
+      {
+        "snapshot_at": "2026-05-07 10:00:08",
+        "power": 85788542
+      },
+      {
+        "snapshot_at": "2026-05-07 18:27:00",
+        "power": 85788542
+      },
+      {
+        "snapshot_at": "2026-05-07 23:54:15",
+        "power": 86326721
+      },
+      {
+        "snapshot_at": "2026-05-08 09:39:02",
+        "power": 86568553
+      },
+      {
+        "snapshot_at": "2026-05-08 14:27:54",
+        "power": 86568553
+      },
+      {
+        "snapshot_at": "2026-05-08 16:05:05",
+        "power": 86568553
+      },
+      {
+        "snapshot_at": "2026-05-09 08:57:20",
+        "power": 86636373
+      },
+      {
+        "snapshot_at": "2026-05-09 21:55:47",
+        "power": 86672373
+      },
+      {
+        "snapshot_at": "2026-05-09 23:55:18",
+        "power": 86672373
+      },
+      {
+        "snapshot_at": "2026-05-10 08:05:19",
+        "power": 86672373
+      },
+      {
+        "snapshot_at": "2026-05-10 23:59:10",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-11 07:50:38",
+        "power": 86895553
+      },
+      {
+        "snapshot_at": "2026-05-14 17:06:15",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-15 00:05:25",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-15 08:02:13",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-15 09:17:14",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-15 23:51:28",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-16 23:54:24",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-17 16:45:23",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-18 00:00:51",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-18 07:54:36",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-19 00:01:47",
+        "power": 86885553
+      },
+      {
+        "snapshot_at": "2026-05-19 23:59:46",
+        "power": 87093717
+      },
+      {
+        "snapshot_at": "2026-05-20 23:55:26",
+        "power": 87093717
+      },
+      {
+        "snapshot_at": "2026-05-22 00:23:58",
+        "power": 87427141
+      },
+      {
+        "snapshot_at": "2026-05-22 08:03:49",
+        "power": 87421141
+      },
+      {
+        "snapshot_at": "2026-05-22 23:54:12",
+        "power": 87427141
+      },
+      {
+        "snapshot_at": "2026-05-23 08:04:28",
+        "power": 87427141
+      },
+      {
+        "snapshot_at": "2026-05-24 01:03:43",
+        "power": 80458701
+      },
+      {
+        "snapshot_at": "2026-05-24 08:04:40",
+        "power": 80458701
+      }
+    ],
+    "96309485": [
+      {
+        "snapshot_at": "2026-04-24 00:00:00",
+        "power": 80966570
+      },
+      {
+        "snapshot_at": "2026-04-24 22:36:30",
+        "power": 80966570
+      },
+      {
+        "snapshot_at": "2026-04-25 12:09:45",
+        "power": 81277098
+      },
+      {
+        "snapshot_at": "2026-04-25 15:54:53",
+        "power": 76324820
+      },
+      {
+        "snapshot_at": "2026-04-30 00:56:55",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-04-30 09:29:16",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-01 00:57:40",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-01 18:54:10",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-02 00:11:41",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-02 10:40:19",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-02 11:57:00",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-03 16:04:47",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-03 18:07:46",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-04 01:11:10",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-04 09:24:56",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-04 11:25:34",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-04 17:21:20",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-05 00:06:27",
+        "power": 79388765
+      },
+      {
+        "snapshot_at": "2026-05-05 12:32:26",
+        "power": 79361043
+      },
+      {
+        "snapshot_at": "2026-05-05 21:50:30",
+        "power": 79361043
+      },
+      {
+        "snapshot_at": "2026-05-06 09:21:57",
+        "power": 79361043
+      },
+      {
+        "snapshot_at": "2026-05-07 10:00:08",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-07 18:27:00",
+        "power": 79652979
+      },
+      {
+        "snapshot_at": "2026-05-07 23:54:15",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-08 09:39:02",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-08 14:27:54",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-08 16:05:05",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-09 08:57:20",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-09 21:55:47",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-09 23:55:18",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-10 08:05:19",
+        "power": 79652973
+      },
+      {
+        "snapshot_at": "2026-05-10 23:59:10",
+        "power": 79652973
+      },
+      {
+        "snapshot_at": "2026-05-11 07:50:38",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-14 17:06:15",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-15 00:05:25",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-15 08:02:13",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-15 09:17:14",
+        "power": 79652973
+      },
+      {
+        "snapshot_at": "2026-05-15 23:51:28",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-16 23:54:24",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-17 16:45:23",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-18 00:00:51",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-18 07:54:36",
+        "power": 79652373
+      },
+      {
+        "snapshot_at": "2026-05-19 00:01:47",
+        "power": 79652973
+      },
+      {
+        "snapshot_at": "2026-05-19 23:59:46",
+        "power": 79917143
+      },
+      {
+        "snapshot_at": "2026-05-20 23:55:26",
+        "power": 79917143
+      },
+      {
+        "snapshot_at": "2026-05-22 00:23:58",
+        "power": 80181332
+      },
+      {
+        "snapshot_at": "2026-05-22 08:03:49",
+        "power": 80181332
+      },
+      {
+        "snapshot_at": "2026-05-22 23:54:12",
+        "power": 80181332
+      },
+      {
+        "snapshot_at": "2026-05-23 08:04:28",
+        "power": 80445921
+      },
+      {
+        "snapshot_at": "2026-05-24 01:03:43",
+        "power": 80445521
+      },
+      {
+        "snapshot_at": "2026-05-24 08:04:40",
+        "power": 80445521
+      }
+    ],
+    "143707994": [
+      {
+        "snapshot_at": "2026-04-24 00:00:00",
+        "power": 64957267
+      },
+      {
+        "snapshot_at": "2026-04-24 22:36:30",
+        "power": 64957267
+      },
+      {
+        "snapshot_at": "2026-04-25 12:09:45",
+        "power": 64959797
+      },
+      {
+        "snapshot_at": "2026-04-25 15:54:53",
+        "power": 64959797
+      },
+      {
+        "snapshot_at": "2026-04-29 21:29:23",
+        "power": 66776431
+      },
+      {
+        "snapshot_at": "2026-04-30 00:56:55",
+        "power": 66776431
+      },
+      {
+        "snapshot_at": "2026-04-30 09:29:16",
+        "power": 66963155
+      },
+      {
+        "snapshot_at": "2026-05-01 00:57:40",
+        "power": 67143271
+      },
+      {
+        "snapshot_at": "2026-05-01 18:54:10",
+        "power": 67344461
+      },
+      {
+        "snapshot_at": "2026-05-02 00:11:41",
+        "power": 67344461
+      },
+      {
+        "snapshot_at": "2026-05-02 11:57:00",
+        "power": 67457912
+      },
+      {
+        "snapshot_at": "2026-05-03 16:04:47",
+        "power": 67630268
+      },
+      {
+        "snapshot_at": "2026-05-03 18:07:46",
+        "power": 67630268
+      },
+      {
+        "snapshot_at": "2026-05-04 01:11:10",
+        "power": 67632348
+      },
+      {
+        "snapshot_at": "2026-05-04 09:24:56",
+        "power": 67632348
+      },
+      {
+        "snapshot_at": "2026-05-04 11:25:34",
+        "power": 67632348
+      },
+      {
+        "snapshot_at": "2026-05-04 17:21:20",
+        "power": 67813666
+      },
+      {
+        "snapshot_at": "2026-05-05 00:06:27",
+        "power": 67800105
+      },
+      {
+        "snapshot_at": "2026-05-05 12:32:26",
+        "power": 67945981
+      },
+      {
+        "snapshot_at": "2026-05-05 21:50:30",
+        "power": 68726869
+      },
+      {
+        "snapshot_at": "2026-05-06 09:21:57",
+        "power": 68870532
+      },
+      {
+        "snapshot_at": "2026-05-07 10:00:08",
+        "power": 69123358
+      },
+      {
+        "snapshot_at": "2026-05-07 18:27:00",
+        "power": 69339756
+      },
+      {
+        "snapshot_at": "2026-05-07 23:54:15",
+        "power": 69333339
+      },
+      {
+        "snapshot_at": "2026-05-08 09:39:02",
+        "power": 69323916
+      },
+      {
+        "snapshot_at": "2026-05-08 14:27:54",
+        "power": 69709366
+      },
+      {
+        "snapshot_at": "2026-05-08 16:05:05",
+        "power": 69709366
+      },
+      {
+        "snapshot_at": "2026-05-09 08:57:20",
+        "power": 69791866
+      },
+      {
+        "snapshot_at": "2026-05-09 21:55:47",
+        "power": 70015742
+      },
+      {
+        "snapshot_at": "2026-05-09 23:55:18",
+        "power": 70017081
+      },
+      {
+        "snapshot_at": "2026-05-10 08:05:19",
+        "power": 70017081
+      },
+      {
+        "snapshot_at": "2026-05-10 23:59:10",
+        "power": 70017081
+      },
+      {
+        "snapshot_at": "2026-05-11 07:50:38",
+        "power": 70029709
+      },
+      {
+        "snapshot_at": "2026-05-14 17:06:15",
+        "power": 70515623
+      },
+      {
+        "snapshot_at": "2026-05-15 00:05:25",
+        "power": 70513707
+      },
+      {
+        "snapshot_at": "2026-05-15 08:02:13",
+        "power": 70711836
+      },
+      {
+        "snapshot_at": "2026-05-15 09:17:14",
+        "power": 70707206
+      },
+      {
+        "snapshot_at": "2026-05-15 23:51:28",
+        "power": 70707789
+      },
+      {
+        "snapshot_at": "2026-05-16 23:54:24",
+        "power": 70707789
+      },
+      {
+        "snapshot_at": "2026-05-17 16:45:23",
+        "power": 70707789
+      },
+      {
+        "snapshot_at": "2026-05-18 00:00:51",
+        "power": 70707789
+      },
+      {
+        "snapshot_at": "2026-05-18 07:54:36",
+        "power": 70707789
+      },
+      {
+        "snapshot_at": "2026-05-19 00:01:47",
+        "power": 70707789
+      },
+      {
+        "snapshot_at": "2026-05-19 23:59:46",
+        "power": 71018925
+      },
+      {
+        "snapshot_at": "2026-05-20 23:55:26",
+        "power": 72193128
+      },
+      {
+        "snapshot_at": "2026-05-22 00:23:58",
+        "power": 72400056
+      },
+      {
+        "snapshot_at": "2026-05-22 08:03:49",
+        "power": 72400056
+      },
+      {
+        "snapshot_at": "2026-05-22 23:54:12",
+        "power": 72601956
+      },
+      {
+        "snapshot_at": "2026-05-23 08:04:28",
+        "power": 69772376
+      },
+      {
+        "snapshot_at": "2026-05-24 01:03:43",
+        "power": 69375578
+      },
+      {
+        "snapshot_at": "2026-05-24 08:04:40",
+        "power": 69375578
+      }
+    ],
+    "95620773": [
+      {
+        "snapshot_at": "2026-04-29 23:11:45",
+        "power": 87510745
+      },
+      {
+        "snapshot_at": "2026-04-30 00:56:55",
+        "power": 87510745
+      },
+      {
+        "snapshot_at": "2026-04-30 09:29:16",
+        "power": 97646675
+      },
+      {
+        "snapshot_at": "2026-05-02 11:57:00",
+        "power": 89852910
+      },
+      {
+        "snapshot_at": "2026-05-22 23:54:12",
+        "power": 91315126
+      },
+      {
+        "snapshot_at": "2026-05-23 08:04:28",
+        "power": 91315126
+      },
+      {
+        "snapshot_at": "2026-05-24 01:03:43",
+        "power": 91486315
+      },
+      {
+        "snapshot_at": "2026-05-24 08:04:40",
+        "power": 91486315
+      }
+    ],
+    "37561536": [
+      {
+        "snapshot_at": "2026-05-22 23:54:12",
+        "power": 90752638
+      },
+      {
+        "snapshot_at": "2026-05-23 08:04:28",
+        "power": 90755168
+      },
+      {
+        "snapshot_at": "2026-05-24 01:03:43",
+        "power": 90871658
+      },
+      {
+        "snapshot_at": "2026-05-24 08:04:40",
+        "power": 90874188
+      }
+    ]
+  },
+  "member_delta_label": "Last 24h",
+  "scan_quality": {
+    "recent_runs": [
+      {
+        "session_id": "82696d2d1d6d40b58ca0d1be48cb697b",
+        "started_at": "2026-05-24 23:00:10",
+        "ended_at": "2026-05-24 23:55:43",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 70,
+        "autosave_count": 7,
+        "local_save_count": 8,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (70/100 players).",
+        "rejected_scans": [],
+        "active_scanned_member_count": 96,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-24 23:55:43"
+      },
+      {
+        "session_id": "c7930e65e304485f8fa9e533587d5e0b",
+        "started_at": "2026-05-24 07:00:09",
+        "ended_at": "2026-05-24 08:04:40",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 78,
+        "autosave_count": 8,
+        "local_save_count": 9,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (78/100 players). Rejected 6 suspicious player scan(s).",
+        "rejected_scans": [
+          {
+            "player_id": "17547528",
+            "name": "[KOR]Arthur",
+            "previous_power": 799944902,
+            "current_power": 199944902,
+            "pct_change": -75.0051657932811,
+            "allowance_phase": "recovery",
+            "previous_snapshot_at": "2026-05-23 23:48:03",
+            "previous_source": "scan_autosave"
+          },
+          {
+            "player_id": "63700603",
+            "name": "[KOR]모나미2",
+            "previous_power": 797433487,
+            "current_power": 191717489,
+            "pct_change": -75.95818433443841,
+            "allowance_phase": "recovery",
+            "previous_snapshot_at": "2026-05-23 23:48:03",
+            "previous_source": "scan_autosave"
+          },
+          {
+            "player_id": "101998004",
+            "name": "[KOR]Amurphy",
+            "previous_power": 180846140,
+            "current_power": 8082632,
+            "pct_change": -95.53065827116907,
+            "allowance_phase": "recovery",
+            "previous_snapshot_at": "2026-05-24 01:03:43",
+            "previous_source": "scan"
+          },
+          {
+            "player_id": "15518590",
+            "name": "[KOR]Ua_Aksil",
+            "previous_power": 0,
+            "current_power": 1935146161,
+            "pct_change": 0.0,
+            "allowance_phase": "order",
+            "previous_snapshot_at": "",
+            "previous_source": "",
+            "reason": "order-conflict",
+            "detail": "isolated player broke descending power order"
+          },
+          {
+            "player_id": "35432769",
+            "name": "[KOR]vivitamin ᴷᴼᴿ",
+            "previous_power": 0,
+            "current_power": 139405041,
+            "pct_change": 0.0,
+            "allowance_phase": "order",
+            "previous_snapshot_at": "",
+            "previous_source": "",
+            "reason": "order-conflict",
+            "detail": "isolated player broke descending power order"
+          }
+        ],
+        "active_scanned_member_count": 96,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-24 08:04:40"
+      },
+      {
+        "session_id": "d92939b018ab448b8b7a4c103479a02b",
+        "started_at": "2026-05-23 23:58:34",
+        "ended_at": "2026-05-24 01:03:43",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 88,
+        "autosave_count": 8,
+        "local_save_count": 9,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (88/100 players). Rejected 4 suspicious player scan(s). Flagged 1 ambiguous order conflict(s).",
+        "rejected_scans": [
+          {
+            "player_id": "12667201",
+            "name": "[KOR]둥어리",
+            "previous_power": 796997364,
+            "current_power": 230734721,
+            "pct_change": -71.04950010850976,
+            "allowance_phase": "recovery",
+            "previous_snapshot_at": "2026-05-23 23:48:03",
+            "previous_source": "scan_autosave"
+          },
+          {
+            "player_id": "17547528",
+            "name": "[KOR]Arthur",
+            "previous_power": 799944902,
+            "current_power": 199944462,
+            "pct_change": -75.00522079706936,
+            "allowance_phase": "recovery",
+            "previous_snapshot_at": "2026-05-23 23:48:03",
+            "previous_source": "scan_autosave"
+          },
+          {
+            "player_id": "17547528",
+            "name": "[KOR]Arthur",
+            "previous_power": 799944902,
+            "current_power": 199944462,
+            "pct_change": -75.00522079706936,
+            "allowance_phase": "recovery",
+            "previous_snapshot_at": "2026-05-23 23:48:03",
+            "previous_source": "scan_autosave"
+          },
+          {
+            "player_id": "63700603",
+            "name": "[KOR]모나미2",
+            "previous_power": 797433487,
+            "current_power": 191422513,
+            "pct_change": -75.99517500573687,
+            "allowance_phase": "recovery",
+            "previous_snapshot_at": "2026-05-23 23:48:03",
+            "previous_source": "scan_autosave"
+          },
+          {
+            "reason": "order-conflict",
+            "detail": "descending order conflict could not be resolved by removing a small suspect set",
+            "players": [
+              "14420210",
+              "16337954",
+              "13159160",
+              "12479203",
+              "12920544",
+              "14895477",
+              "13608862",
+              "13192023",
+              "18852649",
+              "16344957",
+              "14240494",
+              "14668286",
+              "14122274",
+              "25847687",
+              "15403554",
+              "15083171",
+              "13158856",
+              "13273821",
+              "18174470",
+              "15649048",
+              "15357099",
+              "14874875",
+              "12303773",
+              "13814595",
+              "14240617",
+              "16108552",
+              "14362570",
+              "13544739",
+              "14027219",
+              "12889503",
+              "13430633",
+              "15501768",
+              "9698741",
+              "10599223",
+              "12969351",
+              "14930347",
+              "79421307",
+              "59142600",
+              "20086184",
+              "26315606",
+              "9076243",
+              "18527869",
+              "75840424",
+              "15584085",
+              "11749100",
+              "12929361",
+              "24921744",
+              "16361203",
+              "10085570",
+              "16189796",
+              "14793984",
+              "16223141",
+              "15239561",
+              "46819538",
+              "12636579",
+              "15124889",
+              "15518590",
+              "14031965",
+              "72880502",
+              "13961596",
+              "11091520",
+              "101998004",
+              "104848775",
+              "35432769",
+              "14633375",
+              "15386958",
+              "143887186",
+              "15404004",
+              "146066291",
+              "16669028",
+              "12036487",
+              "14580815",
+              "13126036",
+              "19374836",
+              "12716604",
+              "16601430",
+              "12962496",
+              "49850563",
+              "78260985",
+              "95620773",
+              "37561536",
+              "13215323",
+              "91374921",
+              "14584495",
+              "125252147",
+              "96309485",
+              "51646528",
+              "143707994"
+            ]
+          }
+        ],
+        "active_scanned_member_count": 96,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-24 01:03:43"
+      },
+      {
+        "session_id": "ef0132ed905f4bf5bd2e789ac0e2f89f",
+        "started_at": "2026-05-23 07:00:08",
+        "ended_at": "2026-05-23 08:04:28",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 86,
+        "autosave_count": 8,
+        "local_save_count": 9,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (86/100 players). Rejected 2 suspicious player scan(s). Flagged 1 ambiguous order conflict(s).",
+        "rejected_scans": [
+          {
+            "player_id": "16669028",
+            "name": "[KOR]AKRAN",
+            "previous_power": 257489236,
+            "current_power": 5777379,
+            "pct_change": -97.75626387737621,
+            "allowance_phase": "normal",
+            "previous_snapshot_at": "2026-05-22 23:54:12",
+            "previous_source": "scan"
+          },
+          {
+            "player_id": "17547528",
+            "name": "[KOR]Arthur",
+            "previous_power": 199255764,
+            "current_power": 707734909,
+            "pct_change": 255.18917736301972,
+            "allowance_phase": "normal",
+            "previous_snapshot_at": "2026-05-22 23:54:12",
+            "previous_source": "scan"
+          },
+          {
+            "reason": "order-conflict",
+            "detail": "descending order conflict could not be resolved by removing a small suspect set",
+            "players": [
+              "14420210",
+              "16337954",
+              "13159160",
+              "12479203",
+              "12920544",
+              "13608862",
+              "14895477",
+              "13192023",
+              "18852649",
+              "16344957",
+              "14122274",
+              "14240494",
+              "14668286",
+              "25847687",
+              "15403554",
+              "15083171",
+              "13273821",
+              "13158856",
+              "18174470",
+              "15649048",
+              "15357099",
+              "16108552",
+              "14874875",
+              "13814595",
+              "14240617",
+              "24921744",
+              "12303773",
+              "14362570",
+              "12889503",
+              "13544739",
+              "14027219",
+              "15501768",
+              "13430633",
+              "9698741",
+              "10599223",
+              "12969351",
+              "14930347",
+              "79421307",
+              "59142600",
+              "20086184",
+              "18527869",
+              "9076243",
+              "26315606",
+              "75840424",
+              "15584085",
+              "11749100",
+              "16361203",
+              "12929361",
+              "11091520",
+              "16189796",
+              "10085570",
+              "14793984",
+              "16223141",
+              "14977796",
+              "14031965",
+              "15239561",
+              "16601430",
+              "46819538",
+              "15124889",
+              "91374921",
+              "13126036",
+              "13215323",
+              "13952845",
+              "12962496",
+              "15518590",
+              "63700603",
+              "72880502",
+              "15404004",
+              "35432769",
+              "12636579",
+              "101998004",
+              "13961596",
+              "12036487",
+              "143887186",
+              "15386958",
+              "146066291",
+              "16452494",
+              "49850563",
+              "15682369",
+              "51646528",
+              "95620773",
+              "37561536",
+              "14584495",
+              "125252147",
+              "96309485",
+              "143707994"
+            ]
+          }
+        ],
+        "active_scanned_member_count": 96,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-23 08:04:28"
+      },
+      {
+        "session_id": "8ee3f5ec02f04ae3be1efac8da29ba96",
+        "started_at": "2026-05-22 23:00:11",
+        "ended_at": "2026-05-22 23:54:12",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 86,
+        "autosave_count": 8,
+        "local_save_count": 9,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (86/100 players). Flagged 1 ambiguous order conflict(s).",
+        "rejected_scans": [
+          {
+            "reason": "order-conflict",
+            "detail": "descending order conflict could not be resolved by removing a small suspect set",
+            "players": [
+              "14420210",
+              "16337954",
+              "13159160",
+              "12479203",
+              "12920544",
+              "13608862",
+              "14895477",
+              "13192023",
+              "18852649",
+              "16344957",
+              "14122274",
+              "14240494",
+              "14668286",
+              "25847687",
+              "15403554",
+              "15083171",
+              "13273821",
+              "18174470",
+              "15649048",
+              "15357099",
+              "16108552",
+              "14874875",
+              "14240617",
+              "12889503",
+              "13544739",
+              "14027219",
+              "13430633",
+              "15501768",
+              "79421307",
+              "59142600",
+              "20086184",
+              "26315606",
+              "9076243",
+              "18527869",
+              "75840424",
+              "12667201",
+              "15584085",
+              "16601430",
+              "11749100",
+              "16361203",
+              "12929361",
+              "12036487",
+              "15124889",
+              "16669028",
+              "10085570",
+              "11091520",
+              "16189796",
+              "14793984",
+              "14977796",
+              "16223141",
+              "14031965",
+              "19374836",
+              "14580815",
+              "15239561",
+              "12716604",
+              "46819538",
+              "15404004",
+              "91374921",
+              "13952845",
+              "13215323",
+              "12962496",
+              "13126036",
+              "15682369",
+              "17547528",
+              "15518590",
+              "63700603",
+              "13961596",
+              "72880502",
+              "35432769",
+              "101998004",
+              "14633375",
+              "104848775",
+              "15386958",
+              "143887186",
+              "146066291",
+              "16452494",
+              "28403079",
+              "14584495",
+              "78260985",
+              "49850563",
+              "51646528",
+              "95620773",
+              "37561536",
+              "125252147",
+              "96309485",
+              "143707994"
+            ]
+          }
+        ],
+        "active_scanned_member_count": 96,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-22 23:54:12"
+      },
+      {
+        "session_id": "354e875c99a24cce9cd4101bc14551f7",
+        "started_at": "2026-05-22 07:00:08",
+        "ended_at": "2026-05-22 08:03:49",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 78,
+        "autosave_count": 7,
+        "local_save_count": 8,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (78/100 players). Rejected 2 suspicious player scan(s).",
+        "rejected_scans": [
+          {
+            "player_id": "26315606",
+            "name": "[KOR]Korando",
+            "previous_power": 287982879,
+            "current_power": 597979779,
+            "pct_change": 107.64421172412824,
+            "allowance_phase": "normal",
+            "previous_snapshot_at": "2026-05-22 00:23:58",
+            "previous_source": "scan"
+          },
+          {
+            "player_id": "9076243",
+            "name": "[KOR]Busan",
+            "previous_power": 287293598,
+            "current_power": 597394390,
+            "pct_change": 107.93863634928613,
+            "allowance_phase": "normal",
+            "previous_snapshot_at": "2026-05-22 00:23:58",
+            "previous_source": "scan"
+          }
+        ],
+        "active_scanned_member_count": 93,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-22 08:03:49"
+      },
+      {
+        "session_id": "307dde3ddc1841ea85336407cf4fea62",
+        "started_at": "2026-05-21 23:00:18",
+        "ended_at": "2026-05-22 00:23:58",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 91,
+        "autosave_count": 9,
+        "local_save_count": 10,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (91/100 players).",
+        "rejected_scans": [],
+        "active_scanned_member_count": 93,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-22 00:23:58"
+      },
+      {
+        "session_id": "84e6a78f387647f69824291d963cc3eb",
+        "started_at": "2026-05-21 07:00:09",
+        "ended_at": "2026-05-21 07:34:42",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 55,
+        "autosave_count": 5,
+        "local_save_count": 6,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (55/100 players).",
+        "rejected_scans": [],
+        "active_scanned_member_count": 94,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-21 07:34:42"
+      },
+      {
+        "session_id": "b16f9e32b4524cbeb742d5e3f73abda4",
+        "started_at": "2026-05-20 23:00:11",
+        "ended_at": "2026-05-20 23:55:26",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 87,
+        "autosave_count": 8,
+        "local_save_count": 9,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (87/100 players). Rejected 1 suspicious player scan(s).",
+        "rejected_scans": [
+          {
+            "player_id": "11091520",
+            "name": "[KOR]Dotori",
+            "previous_power": 251812974,
+            "current_power": 5198994,
+            "pct_change": -97.93537484688935,
+            "allowance_phase": "normal",
+            "previous_snapshot_at": "2026-05-20 16:46:53",
+            "previous_source": "scan"
+          }
+        ],
+        "active_scanned_member_count": 94,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-20 23:55:26"
+      },
+      {
+        "session_id": "b0140a8180fe4235b9b92fb44551ebe3",
+        "started_at": "2026-05-20 16:00:16",
+        "ended_at": "2026-05-20 16:46:53",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 73,
+        "autosave_count": 7,
+        "local_save_count": 8,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (73/100 players). Rejected 1 suspicious player scan(s).",
+        "rejected_scans": [
+          {
+            "player_id": "13273821",
+            "name": "[KOR]빛타민ᴷᴼᴿ",
+            "previous_power": 382541466,
+            "current_power": 983861921,
+            "pct_change": 157.19092136275756,
+            "allowance_phase": "normal",
+            "previous_snapshot_at": "2026-05-19 16:44:34",
+            "previous_source": "scan"
+          }
+        ],
+        "active_scanned_member_count": 94,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-20 16:46:53"
+      },
+      {
+        "session_id": "424e2d0951794d39b02d8d56385397f8",
+        "started_at": "2026-05-19 23:00:11",
+        "ended_at": "2026-05-19 23:59:46",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 90,
+        "autosave_count": 9,
+        "local_save_count": 10,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (90/100 players). Rejected 1 suspicious player scan(s).",
+        "rejected_scans": [
+          {
+            "player_id": "13273821",
+            "name": "[KOR]빛타민ᴷᴼᴿ",
+            "previous_power": 382541466,
+            "current_power": 9934409,
+            "pct_change": -97.40305041859175,
+            "allowance_phase": "normal",
+            "previous_snapshot_at": "2026-05-19 16:44:34",
+            "previous_source": "scan"
+          }
+        ],
+        "active_scanned_member_count": 94,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-19 23:59:46"
+      },
+      {
+        "session_id": "2f4c7b9ce073455ca352c788b951cc08",
+        "started_at": "2026-05-19 16:00:15",
+        "ended_at": "2026-05-19 16:44:34",
+        "status": "Partial",
+        "expected_players": 100,
+        "captured_players": 83,
+        "autosave_count": 8,
+        "local_save_count": 9,
+        "sheet_sync_status": "",
+        "view_failures": 0,
+        "power_failures": 0,
+        "rank_unclear_count": 0,
+        "id_failures": 0,
+        "self_row_fallbacks": 0,
+        "notes": "Partial scan saved (83/100 players).",
+        "rejected_scans": [],
+        "active_scanned_member_count": 94,
+        "active_scan_window_days": 3,
+        "active_scan_reference_at": "2026-05-19 16:44:34"
+      }
+    ]
+  },
+  "chat_summary": {
+    "day": "2026-05-25",
     "message_count": 0,
     "speaker_count": 0,
     "top_speakers": [],
