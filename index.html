@@ -4306,6 +4306,16 @@ function formatIndexedPower(value) {
   return `${Number(value).toFixed(1)} (${sign}${delta.toFixed(1)}%)`;
 }
 
+function averageMemberPowerSeries(pointCount) {
+  const histories = _data?.player_history || [];
+  return Array.from({ length: pointCount }, (_, idx) => {
+    const values = histories
+      .map(history => Number(history?.powers?.[idx]))
+      .filter(value => Number.isFinite(value) && value > 0);
+    return values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
+  });
+}
+
 function buildMemberPowerBenchmarkDatasets(memberData, allTs) {
   const benchmarkRows = allTs.map(ts => {
     const values = memberData
@@ -4323,7 +4333,7 @@ function buildMemberPowerBenchmarkDatasets(memberData, allTs) {
 
   return [
     {
-      label: "Alliance Avg",
+      label: "Average Member Power",
       data: indexSeriesToBase100(benchmarkRows.map(row => row.alliance)),
       borderColor: "#f0cf82",
       backgroundColor: "transparent",
@@ -6117,21 +6127,37 @@ function renderMemberHistoryChart(member) {
   const item = (_data?.player_history || []).find(h => String(h.player_id) === String(member.player_id));
   const histories = item?.powers || [];
   const labels = (_data?.weeks || []).map(shortWeekLabel);
+  const averagePowers = averageMemberPowerSeries(histories.length);
   if (!histories.length) return;
   _charts[key] = new Chart(canvas.getContext("2d"), {
     type: "line",
     data: {
       labels,
-      datasets: [{
-        label: "Power",
-        data: histories,
-        borderColor: "#f0cf82",
-        backgroundColor: "rgba(240,207,130,0.14)",
-        pointRadius: 3,
-        borderWidth: 3,
-        fill: true,
-        tension: 0.28
-      }]
+      datasets: [
+        {
+          label: "Power",
+          data: histories,
+          borderColor: "#f0cf82",
+          backgroundColor: "rgba(240,207,130,0.14)",
+          pointRadius: 3,
+          borderWidth: 3,
+          fill: true,
+          tension: 0.28
+        },
+        {
+          label: "Average Member Power",
+          data: averagePowers,
+          borderColor: "#8ccbff",
+          backgroundColor: "transparent",
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          borderWidth: 2.5,
+          borderDash: [7, 5],
+          fill: false,
+          tension: 0.24,
+          spanGaps: true
+        }
+      ]
     },
     options: {
       ...CHART_DEFAULTS,
@@ -6141,7 +6167,7 @@ function renderMemberHistoryChart(member) {
       },
       plugins: {
         ...CHART_DEFAULTS.plugins,
-        legend: { display: false },
+        legend: { display: true },
         tooltip: { callbacks: { label: ctx => fmtB(ctx.raw) } }
       }
     }
@@ -6416,24 +6442,40 @@ function renderMemberExportCharts(member) {
   const powerCanvas = document.getElementById("member-export-power-chart");
   const powers = history?.powers || [];
   if (powerCanvas && powers.length) {
+    const averagePowers = averageMemberPowerSeries(powers.length);
     created.push(new Chart(powerCanvas.getContext("2d"), {
       type: "line",
       data: {
         labels: weeks.map(shortWeekLabel),
-        datasets: [{
-          label: "Power",
-          data: powers,
-          borderColor: "#f0cf82",
-          backgroundColor: "rgba(240,207,130,0.14)",
-          pointRadius: 3,
-          borderWidth: 3,
-          fill: true,
-          tension: 0.28
-        }]
+        datasets: [
+          {
+            label: "Power",
+            data: powers,
+            borderColor: "#f0cf82",
+            backgroundColor: "rgba(240,207,130,0.14)",
+            pointRadius: 3,
+            borderWidth: 3,
+            fill: true,
+            tension: 0.28
+          },
+          {
+            label: "Average Member Power",
+            data: averagePowers,
+            borderColor: "#8ccbff",
+            backgroundColor: "transparent",
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            borderWidth: 2.5,
+            borderDash: [7, 5],
+            fill: false,
+            tension: 0.24,
+            spanGaps: true
+          }
+        ]
       },
       options: {
         ...exportOptions,
-        plugins: { ...basePlugins, tooltip: { callbacks: { label: ctx => fmtB(ctx.raw) } } },
+        plugins: { ...basePlugins, legend: { display: true, labels: CHART_DEFAULTS.plugins.legend.labels }, tooltip: { callbacks: { label: ctx => fmtB(ctx.raw) } } },
         scales: {
           x: { ticks: { color: tickColor }, grid: { color: gridColor } },
           y: { ticks: { color: tickColor, callback: v => fmtB(v) }, grid: { color: gridColor } }
