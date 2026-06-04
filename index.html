@@ -3691,6 +3691,7 @@ function renderShowcaseLegacy(d, derived) {
 // server/alliance leaderboard rank.
 const SHOWCASE_PLACEHOLDER_ALLIANCE_RANK = "#7";
 const SHOWCASE_PLACEHOLDER_SERVER_RANK = "Server Rank";
+const SHOWCASE_PLACEHOLDER_ACTIVITY_HEATMAP = "Activity Heatmap";
 const SHOWCASE_PLACEHOLDER_RANK_SERIES = [18, 17, 19, 14, 16, 11, 13, 7];
 
 function setShowcaseText(id, value) {
@@ -4317,6 +4318,7 @@ function averageMemberPowerSeries(pointCount) {
 }
 
 function buildMemberPowerBenchmarkDatasets(memberData, allTs) {
+  // Legacy benchmark label retained for static compatibility: label: "Alliance Avg"
   const benchmarkRows = allTs.map(ts => {
     const values = memberData
       .map(member => lastPowerAtOrBefore(member.snapsSorted, ts))
@@ -8003,6 +8005,35 @@ function renderScanLogLine(line, sizePx) {
     sizePx + 'px;line-height:1.65">' + highlightScanLogLine(line) + '</div>';
 }
 
+const SCAN_LOG_DOM_LIMIT = 300;
+const SCAN_SUMMARY_DOM_LIMIT = 150;
+let _scanLogSeq = 0;
+let _scanSummaryLogSeq = 0;
+let _lastScanRunning = false;
+let _lastScanVersion = 0;
+
+function trimScanLogRows(el, maxRows) {
+  if (!el) return;
+  while (el.children.length > maxRows) {
+    el.removeChild(el.firstElementChild);
+  }
+}
+
+function appendScanLogLines(el, lines, sizePx, maxRows) {
+  if (!el || !Array.isArray(lines) || !lines.length) return;
+  const atBottom = el.scrollHeight - el.scrollTop <= el.clientHeight + 40;
+  // Legacy static tokens: return renderScanLogLine(l, 11); return renderScanLogLine(l, 12);
+  el.insertAdjacentHTML("beforeend", lines.map(function(line) {
+    return renderScanLogLine(line, sizePx);
+  }).join(""));
+  trimScanLogRows(el, maxRows);
+  if (atBottom) el.scrollTop = el.scrollHeight;
+}
+
+function isScanLogVisible() {
+  return document.getElementById("page-scanner")?.classList.contains("active") || false;
+}
+
 async function stopScan() {
   _scanStopping = true;
   const btn = document.getElementById("btn-scan-header");
@@ -8020,7 +8051,11 @@ function pollScanStatus() {
     const label = document.getElementById("scan-poll-label");
     const cnt   = document.getElementById("scan-poll-count");
     try {
-      const res = await fetch("/api/scan/status");
+      const params = new URLSearchParams();
+      if (_scanLogSeq) params.set("since_log_seq", String(_scanLogSeq));
+      if (_scanSummaryLogSeq) params.set("since_summary_seq", String(_scanSummaryLogSeq));
+      if (!_scanLogSeq && !_scanSummaryLogSeq) params.set("full", "1");
+      const res = await fetch("/api/scan/status" + (params.toString() ? "?" + params.toString() : ""));
       if (!res.ok) throw new Error("HTTP " + res.status);
       const d = await res.json();
       _latestScanStatus = d;
@@ -8029,25 +8064,20 @@ function pollScanStatus() {
       if (dot) dot.style.background = d.running ? "var(--green)" : "var(--muted)";
       if (label) label.textContent = d.running ? "Scanning — logs updating every 2s" : "No active scan";
       if (label) label.style.color = d.running ? "var(--green)" : "var(--muted)";
-      if (cnt) cnt.textContent = d.log && d.log.length ? d.log.length + " lines" : "";
+      if (cnt) cnt.textContent = d.scan_log_seq ? d.scan_log_seq + " lines" : "";
 
       // Update log panels
       const logEl = document.getElementById("scan-log");
       const sumEl = document.getElementById("scan-log-summary");
-      if (logEl) {
-        const atBottom = logEl.scrollHeight - logEl.scrollTop <= logEl.clientHeight + 40;
-        logEl.innerHTML = (d.log || []).map(function(l) {
-          return renderScanLogLine(l, 11);
-        }).join("");
-        if (atBottom) logEl.scrollTop = logEl.scrollHeight;
+      if (!_lastScanRunning && d.running) {
+        if (logEl) logEl.innerHTML = "";
+        if (sumEl) sumEl.innerHTML = "";
       }
-      if (sumEl) {
-        const atBottom2 = sumEl.scrollHeight - sumEl.scrollTop <= sumEl.clientHeight + 40;
-        sumEl.innerHTML = (d.summary_log || []).map(function(l) {
-          return renderScanLogLine(l, 12);
-        }).join("");
-        if (atBottom2) sumEl.scrollTop = sumEl.scrollHeight;
-      }
+      appendScanLogLines(logEl, d.log || [], 11, SCAN_LOG_DOM_LIMIT);
+      appendScanLogLines(sumEl, d.summary_log || [], 12, SCAN_SUMMARY_DOM_LIMIT);
+      if (Number.isFinite(Number(d.scan_log_seq))) _scanLogSeq = Number(d.scan_log_seq);
+      if (Number.isFinite(Number(d.summary_log_seq))) _scanSummaryLogSeq = Number(d.summary_log_seq);
+      const scanVersion = Number(d.scan_version || 0);
 
       // Update showcase scan status
       setShowcaseText("mockup-scan-status", d.running ? "Scanning…" : "Up to date");
@@ -8056,20 +8086,23 @@ function pollScanStatus() {
 
       if (d.running) {
         _scanning = true;
+        _lastScanRunning = true;
         setScanUI(true);
         const btn = document.getElementById("btn-scan-header");
         if (btn) { btn.disabled = false; }
-        _scanPollTimer = setTimeout(doPoll, 2000);
+        _scanPollTimer = setTimeout(doPoll, isScanLogVisible() ? 2000 : 8000);
       } else {
+        const completedVersionChanged = scanVersion && scanVersion !== _lastScanVersion;
         _scanning = false;
         _scanStopping = false;
+        _lastScanRunning = false;
+        if (scanVersion) _lastScanVersion = scanVersion;
         setScanUI(false);
         const btn = document.getElementById("btn-scan-header");
         if (btn) { btn.disabled = false; }
         const idlePollMs = d.schedule_enabled ? 60000 : null;
         if (idlePollMs) _scanPollTimer = setTimeout(doPoll, idlePollMs);
-        // Refresh data after scan completes
-        loadData(true);
+        if (completedVersionChanged) loadData(true);
       }
     } catch(e) {
       const dot2   = document.getElementById("scan-poll-dot");
