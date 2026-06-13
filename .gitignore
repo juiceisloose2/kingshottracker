@@ -16,6 +16,9 @@
 !public_export/
 !public_export/**
 
+!game/
+!game/**
+
 # Always exclude generated caches and secrets if an ignore exception is added later.
 __pycache__/
 *.py[cod]
