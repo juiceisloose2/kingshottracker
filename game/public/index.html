@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>WordMatch — Multiplayer Word Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══ HOME SCREEN ═══════════════════════════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+  <canvas id="bg-canvas"></canvas>
+  <div class="home-inner">
+    <div class="logo-area">
+      <div class="logo-badge">W</div>
+      <h1 class="logo-title">WordMatch</h1>
+      <p class="logo-sub">The multiplayer word completion game</p>
+    </div>
+
+    <div class="home-card glass-card">
+      <div class="tab-row">
+        <button class="tab-btn active" data-tab="join">Join Game</button>
+        <button class="tab-btn" data-tab="create">Create Game</button>
+      </div>
+
+      <!-- Join Tab -->
+      <div class="tab-panel active" id="tab-join">
+        <div class="field-group">
+          <label>Your Name</label>
+          <input type="text" id="join-name" placeholder="Enter your name" maxlength="20" autocomplete="off" />
+        </div>
+        <div class="field-group">
+          <label>Room Code</label>
+          <input type="text" id="join-code" placeholder="e.g. WOLF" maxlength="4" autocomplete="off" class="code-input" />
+        </div>
+        <button class="btn btn-primary" id="btn-join">Join Game →</button>
+      </div>
+
+      <!-- Create Tab -->
+      <div class="tab-panel" id="tab-create">
+        <div class="field-group">
+          <label>Your Name</label>
+          <input type="text" id="create-name" placeholder="Enter your name" maxlength="20" autocomplete="off" />
+        </div>
+        <div class="settings-grid">
+          <div class="field-group">
+            <label>Rounds</label>
+            <select id="create-rounds">
+              <option value="5">5 rounds</option>
+              <option value="10" selected>10 rounds</option>
+              <option value="15">15 rounds</option>
+              <option value="20">20 rounds</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label>Time per round</label>
+            <select id="create-time">
+              <option value="15">15 seconds</option>
+              <option value="30" selected>30 seconds</option>
+              <option value="45">45 seconds</option>
+              <option value="60">60 seconds</option>
+            </select>
+          </div>
+          <div class="field-group full-width">
+            <label>Word Category</label>
+            <select id="create-category">
+              <option value="general">🌍 General</option>
+              <option value="food">🍕 Food &amp; Drink</option>
+              <option value="sports">⚽ Sports</option>
+              <option value="movies">🎬 Movies &amp; TV</option>
+              <option value="tech">💻 Tech</option>
+              <option value="animals">🐾 Animals</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-create">Create Game →</button>
+      </div>
+    </div>
+
+    <div class="how-to-row">
+      <button class="btn btn-ghost btn-sm" id="btn-how-to">How to Play</button>
+    </div>
+    <p class="home-hint">Up to 10 players · No account needed</p>
+  </div>
+</div>
+
+<!-- How to Play Modal -->
+<div id="modal-how-to" class="modal-overlay" style="display:none">
+  <div class="modal-box glass-card">
+    <div class="modal-header">
+      <h2>How to Play</h2>
+      <button class="btn btn-ghost btn-sm" id="btn-close-modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="how-step"><span class="step-num">1</span><div><strong>Join or Create a Room</strong><br>Enter your name and share the 4-letter code with friends.</div></div>
+      <div class="how-step"><span class="step-num">2</span><div><strong>Complete the Word</strong><br>You see a phrase like <em>"fire ___"</em>. Type what comes after it — <em>storm, truck, works</em>…</div></div>
+      <div class="how-step"><span class="step-num">3</span><div><strong>Match to Score</strong><br>Players who type the <strong>same answer</strong> form a group. The <strong>largest group wins</strong> the round and each player in it gets a point. Think like the crowd!</div></div>
+      <div class="how-step"><span class="step-num">4</span><div><strong>Streaks &amp; Power-ups</strong><br>Win 3 rounds in a row for a 🔥 bonus point. Use your one-time <strong>⚡ Wildcard</strong> to join the winning group even if your answer didn't match.</div></div>
+      <div class="how-step"><span class="step-num">5</span><div><strong>Most Points Wins</strong><br>After all rounds, the player with the most points takes the crown. 🏆</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LOBBY SCREEN ══════════════════════════════════════════════════════════ -->
+<div id="screen-lobby" class="screen">
+  <div class="screen-inner">
+    <div class="lobby-layout">
+
+      <div class="lobby-main">
+        <div class="room-code-banner glass-card">
+          <div>
+            <div class="room-code-label">Room Code</div>
+            <div class="room-code-value" id="lobby-code">----</div>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="btn-copy-code">Copy</button>
+        </div>
+
+        <div class="glass-card player-list-card">
+          <div class="card-header">
+            <h3>Players <span class="player-count" id="player-count">0/10</span></h3>
+          </div>
+          <div id="player-list" class="player-list"></div>
+        </div>
+
+        <!-- Host Settings -->
+        <div class="glass-card settings-card" id="host-settings" style="display:none">
+          <div class="card-header"><h3>Game Settings</h3></div>
+          <div class="settings-grid">
+            <div class="field-group">
+              <label>Rounds</label>
+              <select id="lobby-rounds">
+                <option value="5">5 rounds</option>
+                <option value="10" selected>10 rounds</option>
+                <option value="15">15 rounds</option>
+                <option value="20">20 rounds</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>Time per round</label>
+              <select id="lobby-time">
+                <option value="15">15s</option>
+                <option value="30" selected>30s</option>
+                <option value="45">45s</option>
+                <option value="60">60s</option>
+              </select>
+            </div>
+            <div class="field-group full-width">
+              <label>Category</label>
+              <select id="lobby-category">
+                <option value="general">🌍 General</option>
+                <option value="food">🍕 Food &amp; Drink</option>
+                <option value="sports">⚽ Sports</option>
+                <option value="movies">🎬 Movies &amp; TV</option>
+                <option value="tech">💻 Tech</option>
+                <option value="animals">🐾 Animals</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-lg" id="btn-start">Start Game</button>
+        </div>
+
+        <div class="waiting-msg" id="waiting-msg" style="display:none">
+          <div class="waiting-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <p>Waiting for host to start…</p>
+        </div>
+      </div>
+
+      <!-- Chat -->
+      <div class="glass-card chat-card">
+        <div class="card-header"><h3>Lobby Chat</h3></div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-input-row">
+          <input type="text" id="chat-input" placeholder="Say something…" maxlength="200" />
+          <button class="btn btn-ghost btn-sm" id="btn-chat-send">Send</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ COUNTDOWN SCREEN ══════════════════════════════════════════════════════ -->
+<div id="screen-countdown" class="screen">
+  <div class="center-content">
+    <div class="big-countdown" id="countdown-num">3</div>
+    <div class="countdown-label">Get ready!</div>
+  </div>
+</div>
+
+<!-- ═══ GAME SCREEN ═══════════════════════════════════════════════════════════ -->
+<div id="screen-game" class="screen">
+  <div class="screen-inner">
+    <div class="game-header">
+      <div class="round-badge">
+        Round <span id="game-round">1</span> of <span id="game-total">10</span>
+      </div>
+      <div class="category-badge" id="game-category">🌍 General</div>
+      <div class="timer-display" id="timer-display">30</div>
+    </div>
+
+    <div class="timer-bar-wrap">
+      <div class="timer-bar" id="timer-bar"></div>
+    </div>
+
+    <div class="prompt-area glass-card">
+      <div class="prompt-text" id="game-prompt">fire ___</div>
+    </div>
+
+    <div class="answer-area glass-card">
+      <div class="answer-label">Complete the phrase:</div>
+      <div class="answer-input-row">
+        <div class="answer-prefix" id="answer-prefix"></div>
+        <input type="text" id="answer-input" placeholder="type here…" maxlength="50" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+      </div>
+      <div class="answer-actions">
+        <button class="btn btn-primary btn-lg" id="btn-lock">Lock In ⏎</button>
+        <button class="btn btn-wildcard" id="btn-wildcard" title="Wildcard: counts as the winning answer!">⚡ Wildcard</button>
+      </div>
+      <div class="locked-msg" id="locked-msg" style="display:none">
+        <span class="lock-icon">🔒</span> Locked in! Waiting for others…
+      </div>
+    </div>
+
+    <div class="players-status" id="players-status"></div>
+
+    <!-- Reaction bar -->
+    <div class="reaction-bar">
+      <button class="react-btn" data-emoji="❤️">❤️</button>
+      <button class="react-btn" data-emoji="😂">😂</button>
+      <button class="react-btn" data-emoji="🔥">🔥</button>
+      <button class="react-btn" data-emoji="😤">😤</button>
+      <button class="react-btn" data-emoji="🎉">🎉</button>
+      <button class="react-btn" data-emoji="💯">💯</button>
+      <button class="react-btn" data-emoji="🤯">🤯</button>
+    </div>
+
+    <!-- Host controls -->
+    <div class="host-controls" id="host-controls" style="display:none">
+      <button class="btn btn-ghost btn-sm" id="btn-extend">+10s</button>
+      <button class="btn btn-ghost btn-sm" id="btn-skip">Skip Round</button>
+    </div>
+
+    <!-- Reaction overlay -->
+    <div id="reaction-overlay" class="reaction-overlay"></div>
+  </div>
+</div>
+
+<!-- ═══ REVEAL SCREEN ════════════════════════════════════════════════════════ -->
+<div id="screen-reveal" class="screen">
+  <div class="screen-inner">
+    <div class="reveal-header">
+      <div class="reveal-prompt-label">The prompt was:</div>
+      <div class="reveal-prompt" id="reveal-prompt"></div>
+    </div>
+
+    <div class="reveal-groups" id="reveal-groups"></div>
+
+    <div class="reveal-scoreboard glass-card">
+      <div class="card-header"><h3>Scoreboard</h3></div>
+      <div id="reveal-scores" class="score-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESULTS SCREEN ════════════════════════════════════════════════════════ -->
+<div id="screen-results" class="screen">
+  <canvas id="confetti-canvas"></canvas>
+  <div class="screen-inner">
+    <div class="results-header">
+      <div class="trophy-icon">🏆</div>
+      <h2 class="results-title">Game Over!</h2>
+      <div class="winner-name" id="winner-name"></div>
+    </div>
+
+    <div class="podium-area" id="podium-area"></div>
+
+    <div class="glass-card final-scores-card">
+      <div class="card-header"><h3>Final Rankings</h3></div>
+      <div id="final-scores" class="score-list"></div>
+    </div>
+
+    <div class="results-actions">
+      <button class="btn btn-primary" id="btn-play-again" style="display:none">Play Again</button>
+      <button class="btn btn-ghost" id="btn-leave">Leave Game</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ═════════════════════════════════════════════════════════════════ -->
+<div id="toast-container"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="sounds.js"></script>
+<script src="client.js"></script>
+</body>
+</html>
